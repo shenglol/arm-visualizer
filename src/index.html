@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <title>FountainJS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
+  
+    <!-- build:css(.tmp) index.css -->
+    <link rel="stylesheet" href="index.css"></link>
+    <!-- endbuild -->
+  </head>
+
+
+  <body>
+    <Root>Loading...</Root>
+  </body>
+
+  <!-- <script src="node_modules/reflect-metadata/Reflect.js"></script> -->
+  <!-- build:js(.tmp) index.js -->
+  <script src="jspm_packages/system.js"></script>
+  <script src="jspm.browser.js"></script>
+  <script src="jspm.config.js"></script>
+
+  <script>
+    System.import('src/index.ts');
+  </script>
+  <!-- endbuild -->
+</html>
+

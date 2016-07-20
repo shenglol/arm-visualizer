@@ -1,0 +1,216 @@
+{
+  "devDependencies": {
+    "del": "^2.0.2",
+    "gulp": "gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
+    "gulp-hub": "frankwallis/gulp-hub#d461b9c700df9010d0a8694e4af1fb96d9f38bf4",
+    "gulp-filter": "^4.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-useref": "^3.0.3",
+    "gulp-postcss": "^6.0.1",
+    "autoprefixer": "^6.2.3",
+    "gulp-rev": "^6.0.1",
+    "gulp-rev-replace": "^0.4.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.4.2",
+    "uglify-save-license": "^0.4.1",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-inline-ng2-template": "^2.0.4",
+    "gulp-sass": "^2.1.1",
+    "browser-sync": "^2.9.11",
+    "browser-sync-spa": "^1.0.3",
+    "karma": "^0.13.14",
+    "karma-coverage": "^0.5.3",
+    "karma-junit-reporter": "^0.4.2",
+    "jasmine": "^2.4.1",
+    "karma-jasmine": "^0.3.8",
+    "es6-shim": "^0.35.0",
+    "karma-chrome-launcher": "^0.2.3",
+    "glob": "^7.0.3",
+    "karma-jspm": "^2.0.2",
+    "jspm": "0.17.0-beta.22",
+    "systemjs-builder": "0.15.23",
+    "gulp-replace": "^0.5.4",
+    "eslint": "^2.11.0",
+    "eslint-config-xo-space": "^0.12.0",
+    "gulp-eslint": "^2.0.0",
+    "babel-eslint": "^6.0.2",
+    "eslint-plugin-babel": "^3.1.0",
+    "tslint": "^3.2.1",
+    "typescript": "^1.7.5",
+    "typings": "^1.0.4",
+    "gulp-tslint": "^4.2.2"
+  },
+  "scripts": {
+    "build": "gulp",
+    "serve": "gulp serve",
+    "serve:dist": "gulp serve:dist",
+    "test": "gulp test",
+    "test:auto": "gulp test:auto",
+    "jspm": "jspm"
+  },
+  "jspm": {
+    "dependencies": {
+      "@angular/http": "npm:@angular/http@2.0.0-rc.4",
+      "es6-promise": "npm:es6-promise@^3.0.2",
+      "reflect-metadata": "npm:reflect-metadata@0.1.3",
+      "es6-shim": "npm:es6-shim@^0.35.0",
+      "@angular/router": "npm:@angular/router@3.0.0-beta.2",
+      "ts": "github:frankwallis/plugin-typescript@4.0.16"
+    },
+    "devDependencies": {
+      "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
+      "babel-plugin-transform-es2015-typeof-symbol": "npm:babel-plugin-transform-es2015-typeof-symbol@^6.8.0",
+      "babel-plugin-angular2-annotations": "npm:babel-plugin-angular2-annotations@^5.0.0",
+      "babel-plugin-transform-decorators-legacy": "npm:babel-plugin-transform-decorators-legacy@^1.3.4",
+      "babel-plugin-transform-class-properties": "npm:babel-plugin-transform-class-properties@^6.6.0",
+      "babel-plugin-transform-flow-strip-types": "npm:babel-plugin-transform-flow-strip-types@^6.6.4",
+      "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
+      "events": "github:jspm/nodelibs-events@^0.2.0-alpha",
+      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
+      "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
+      "stream": "github:jspm/nodelibs-stream@^0.2.0-alpha",
+      "util": "github:jspm/nodelibs-util@^0.2.0-alpha"
+    },
+    "peerDependencies": {
+      "@angular/common": "npm:@angular/common@2.0.0-rc.4",
+      "@angular/compiler": "npm:@angular/compiler@2.0.0-rc.4",
+      "@angular/core": "npm:@angular/core@2.0.0-rc.4",
+      "@angular/platform-browser": "npm:@angular/platform-browser@2.0.0-rc.4",
+      "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@2.0.0-rc.4",
+      "os": "github:jspm/nodelibs-os@^0.2.0-alpha",
+      "process": "github:jspm/nodelibs-process@^0.2.0-alpha",
+      "rxjs": "npm:rxjs@5.0.0-beta.8",
+      "zone.js": "npm:zone.js@^0.6.12"
+    },
+    "overrides": {
+      "npm:@angular/common@2.0.0-rc.4": {
+        "meta": {
+          "src/*.js": {
+            "deps": [
+              "reflect-metadata",
+              "zone.js"
+            ]
+          }
+        }
+      },
+      "npm:@angular/compiler@2.0.0-rc.4": {
+        "meta": {
+          "src/*.js": {
+            "deps": [
+              "reflect-metadata",
+              "zone.js"
+            ]
+          }
+        }
+      },
+      "npm:@angular/core@2.0.0-rc.4": {
+        "meta": {
+          "src/*.js": {
+            "deps": [
+              "reflect-metadata",
+              "zone.js"
+            ]
+          }
+        }
+      },
+      "npm:@angular/http@2.0.0-rc.4": {
+        "meta": {
+          "src/*.js": {
+            "deps": [
+              "reflect-metadata",
+              "zone.js"
+            ]
+          }
+        }
+      },
+      "npm:@angular/platform-browser-dynamic@2.0.0-rc.4": {
+        "meta": {
+          "src/*.js": {
+            "deps": [
+              "reflect-metadata",
+              "zone.js"
+            ]
+          }
+        }
+      },
+      "npm:@angular/platform-browser@2.0.0-rc.4": {
+        "meta": {
+          "src/*.js": {
+            "deps": [
+              "reflect-metadata",
+              "zone.js"
+            ]
+          }
+        }
+      },
+      "npm:debug@2.2.0": {
+        "main": "browser.js",
+        "jspmNodeConversion": false,
+        "format": "cjs",
+        "map": {
+          "./browser.js": {
+            "node": "./node.js"
+          },
+          "fs": "@node/fs",
+          "net": "@node/net",
+          "tty": "@node/tty",
+          "util": "@node/util"
+        }
+      },
+      "npm:inherits@2.0.1": {
+        "ignore": [
+          "test.js"
+        ]
+      },
+      "npm:lodash@4.13.1": {
+        "map": {
+          "buffer": "@empty",
+          "process": "@empty"
+        }
+      },
+      "npm:ms@0.7.1": {
+        "jspmNodeConversion": false,
+        "format": "cjs"
+      },
+      "npm:reflect-metadata@0.1.3": {
+        "jspmNodeConversion": false,
+        "map": {
+          "crypto": {
+            "node": "@node/crypto",
+            "default": "@empty"
+          }
+        }
+      },
+      "npm:typescript@1.8.10": {
+        "browser": {},
+        "map": {
+          "buffer": "@empty",
+          "child_process": "@empty",
+          "fs": "@empty",
+          "path": "@empty",
+          "process": "@empty",
+          "readline": "@empty"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "reflect-metadata": "0.1.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "jasmine": true
+    },
+    "extends": [
+      "xo-space/esnext"
+    ],
+    "globals": {
+      "SystemJS": true,
+      "__moduleName": true
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "globalDependencies": {
+    "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts#dc9dabe74a5be62613b17a3605309783a12ff28a",
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "generator-fountain-angular2": {
+    "version": "0.6.0",
+    "props": {
+      "framework": "angular2",
+      "modules": "systemjs",
+      "js": "typescript",
+      "css": "scss",
+      "resolved": "C:\\Users\\t-shli\\AppData\\Roaming\\npm\\node_modules\\generator-fountain-webapp\\node_modules\\generator-fountain-angular2\\generators\\app\\index.js",
+      "namespace": "fountain-angular2",
+      "argv": {
+        "remain": [],
+        "cooked": [],
+        "original": []
+      },
+      "skip-cache": false,
+      "skip-install": false,
+      "sample": "hello",
+      "router": "router"
+    }
+  }
+}
