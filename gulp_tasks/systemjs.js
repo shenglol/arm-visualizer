@@ -23,7 +23,7 @@ function systemjs(done) {
     ]
   });
   builder.buildStatic(
-    conf.path.tmp('templates/index.ts'),
+    '.tmp/templates/index.ts',
     conf.path.tmp('index.js'),
     {
       production: true,
