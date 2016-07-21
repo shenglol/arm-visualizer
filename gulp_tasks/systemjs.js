@@ -37,9 +37,7 @@ function systemjs(done) {
 
 function copyVendor() {
   return gulp.src([
-    'node_modules/reflect-metadata/Reflect.js',
-    'src/assets/css/bootstrap.min.css',
-    'src/assets/css/font-awesome.min.css'
+    'node_modules/reflect-metadata/Reflect.js'
   ])
   .pipe(gulp.dest(conf.path.dist('vendor')));
 }
@@ -54,11 +52,11 @@ function updateIndexHtml() {
   return gulp.src(conf.path.src('index.html'))
     .pipe(replace(
       /<link rel="stylesheet" href="src\/assets\/css\/bootstrap.min.css" \/>/,
-      `<link rel="stylesheet" href="vendor/bootstrap.min.css" />`
+      `<link rel="stylesheet" href="assets/css/bootstrap.min.css" />`
     )).
     pipe(replace(
       /<link rel="stylesheet" href="src\/assets\/css\/font-awesome.min.css" \/>/,
-      `<link rel="stylesheet" href="vendor/font-awesome.min.css" />`
+      `<link rel="stylesheet" href="assets/css/font-awesome.min.css" />`
     ))
     .pipe(replace(
       /<script src="jspm_packages\/system.js">[\s\S]*<\/script>/,
