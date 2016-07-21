@@ -15,23 +15,33 @@
 }
 
 .main-container {
+  background-color: lightgray;
   width: 100%;
 }
 
-ul {
-  list-style-type: none;
-  margin: .2rem 0 0 0;
+nav {
+  margin: .5rem 0 0 0;
   padding: 0;
 }
 
-li a {
+nav a {
   display: block;
-  color: white;
-  opacity: .6;
-  padding: 1rem;
+  padding: 1rem 1rem;
   text-decoration: none;
 }
 
-li a:hover {
-  opacity: 1;
+nav a:visited, a:link {
+  color: gray;
+}
+
+nav a:hover {
+  color: white;
+}
+
+nav a.active {
+  color: white;
+}
+
+.fa-lg {
+  font-size: 1.5rem;
 }
