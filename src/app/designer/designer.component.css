@@ -1,0 +1,16 @@
+.designer-container {
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.toolbox-container {
+  background-color: #f3f3f3;
+  width: 30rem;
+}
+
+.diagram-container {
+  background-color: white;
+  width: 100%;
+}
+
