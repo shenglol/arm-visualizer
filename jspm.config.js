@@ -217,12 +217,6 @@ SystemJS.config({
     },
     'typings': {
       'defaultExtension': 'ts'
-    },
-    'github:twbs/bootstrap@4.0.0-alpha.2': {
-      'map': {
-        'jquery': 'npm:jquery@2.2.4',
-        'tether': 'github:HubSpot/tether@1.3.3'
-      }
     }
   },
   transpiler: 'ts',
@@ -232,9 +226,6 @@ SystemJS.config({
     'experimentalDecorators': true,
     'removeComments': false,
     'noImplicitAny': false
-  },
-  map: {
-    'bootstrap': 'github:twbs/bootstrap@4.0.0-alpha.2'
   }
 });
 
