@@ -217,6 +217,12 @@ SystemJS.config({
     },
     'typings': {
       'defaultExtension': 'ts'
+    },
+    'github:twbs/bootstrap@4.0.0-alpha.2': {
+      'map': {
+        'jquery': 'npm:jquery@2.2.4',
+        'tether': 'github:HubSpot/tether@1.3.3'
+      }
     }
   },
   transpiler: 'ts',
@@ -226,6 +232,9 @@ SystemJS.config({
     'experimentalDecorators': true,
     'removeComments': false,
     'noImplicitAny': false
+  },
+  map: {
+    'bootstrap': 'github:twbs/bootstrap@4.0.0-alpha.2'
   }
 });
 
@@ -243,12 +252,13 @@ SystemJS.config({
     '@angular/platform-browser': 'npm:@angular/platform-browser@2.0.0-rc.4',
     '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic@2.0.0-rc.4',
     '@angular/router': 'npm:@angular/router@3.0.0-beta.2',
+    '@ng-bootstrap/ng-bootstrap': 'npm:@ng-bootstrap/ng-bootstrap@1.0.0-alpha.0',
     'es6-promise': 'npm:es6-promise@3.2.1',
     'es6-shim': 'npm:es6-shim@0.35.1',
     'os': 'github:jspm/nodelibs-os@0.2.0-alpha',
     'process': 'github:jspm/nodelibs-process@0.2.0-alpha',
     'reflect-metadata': 'npm:reflect-metadata@0.1.3',
-    'rxjs': 'npm:rxjs@5.0.0-beta.8',
+    'rxjs': 'npm:rxjs@5.0.0-beta.6',
     'ts': 'github:frankwallis/plugin-typescript@4.0.16',
     'zone.js': 'npm:zone.js@0.6.12'
   },
@@ -256,11 +266,6 @@ SystemJS.config({
     'github:frankwallis/plugin-typescript@4.0.16': {
       'map': {
         'typescript': 'npm:typescript@1.8.10'
-      }
-    },
-    'npm:rxjs@5.0.0-beta.8': {
-      'map': {
-        'symbol-observable': 'npm:symbol-observable@0.2.4'
       }
     },
     'github:jspm/nodelibs-os@0.2.0-alpha': {

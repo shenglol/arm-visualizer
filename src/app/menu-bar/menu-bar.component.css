@@ -1,0 +1,17 @@
+.navbar {
+  background-color: #563d7c;
+  padding: .2rem 1rem;
+}
+
+.navbar-brand {
+  margin-right: 5rem;
+  margin-top: -.05rem;
+}
+
+.nav-item {
+  margin: 0 1rem 0 0;
+}
+
+.dropdown-menu {
+  border-radius: 0rem;
+}
