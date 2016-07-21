@@ -1,18 +1,13 @@
-/// <reference path="../typings/index.d.ts"/>
-
-import 'zone.js/dist/zone';
 import {bootstrap} from '@angular/platform-browser-dynamic';
-
-import {provideRouter} from '@angular/router';
 import {enableProdMode} from '@angular/core';
-import {routes, Root} from './routes.ts';
-
 import {production} from '@system-env';
+
+// import { APP_ROUTER_PROVIDERS } from './app/app.routes.ts';
+
+import { AppComponent } from './app/app.component.ts';
 
 if (production) {
   enableProdMode();
 }
 
-bootstrap(Root, [
-  provideRouter(routes)
-]);
+bootstrap(AppComponent);
