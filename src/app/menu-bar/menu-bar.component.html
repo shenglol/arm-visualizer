@@ -5,18 +5,18 @@
       <div ngbDropdown>
         <a class="nav-link" role="button" ngbDropdownToggle>File</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Open Exsiting Template...</a>
-          <a class="dropdown-item" href="#">Open Quickstart Template...</a>
+          <a class="dropdown-item" role="button" (click)="openLocalTemplate()">Open Local Template...</a>
+          <a class="dropdown-item" role="button" (click)="openQuickstartTemplate()">Open Quickstart Template...</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Export Template</a>
+          <a class="dropdown-item" role="button" (click)="exportTemplate()">Export Template</a>
         </div>
       </div>
     </li>
     <li class="nav-item">
       <div ngbDropdown>
-        <a class="nav-link" href="#" role="button" ngbDropdownToggle>Azure</a>
+        <a class="nav-link" role="button" ngbDropdownToggle>Azure</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Deploy to Azure</a>
+          <a class="dropdown-item" role="button" (click)="deployToAzure()">Deploy to Azure</a>
         </div>
       </div>
     </li>

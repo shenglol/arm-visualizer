@@ -9,4 +9,19 @@ import { NGB_DROPDOWN_DIRECTIVES } from '@ng-bootstrap/ng-bootstrap';
   directives: [NGB_DROPDOWN_DIRECTIVES]
 })
 export class MenuBarComponent {
+  openLocalTemplate() {
+    console.log('open local template');
+  }
+
+  openQuickstartTemplate() {
+    console.log('open quickstart template');
+  }
+
+  exportTemplate() {
+    console.log('export template');
+  }
+
+  deployToAzure() {
+    console.log('deploy to azure');
+  }
 }
