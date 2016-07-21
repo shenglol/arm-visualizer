@@ -11,9 +11,9 @@ const uglifySaveLicense = require('uglify-save-license');
 
 const conf = require('../conf/gulp.conf');
 
-gulp.task('build', build);
+gulp.task('compile', compile);
 
-function build() {
+function compile() {
   const htmlFilter = filter(conf.path.tmp('*.html'), {restore: true});
   const jsFilter = filter(conf.path.tmp('**/*.js'), {restore: true});
   const cssFilter = filter(conf.path.tmp('**/*.css'), {restore: true});
