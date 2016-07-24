@@ -215,6 +215,9 @@ SystemJS.config({
     'src': {
       'defaultExtension': 'ts'
     },
+    '.tmp': {
+      'defaultExtension': 'ts'
+    },
     'typings': {
       'defaultExtension': 'ts'
     }

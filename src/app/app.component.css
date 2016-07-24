@@ -8,39 +8,3 @@
   display: -webkit-flex;
   display: flex;
 }
-
-.nav-container {
-  background-color: #2c2c2c;
-  width: auto;
-}
-
-.main-container {
-  width: 100%;
-}
-
-nav {
-  margin: .5rem 0 0 0;
-  padding: 0;
-}
-
-nav a {
-  display: block;
-  padding: 1rem 1rem;
-  text-decoration: none;
-}
-
-nav a:visited, a:link {
-  color: gray;
-}
-
-nav a:hover {
-  color: white;
-}
-
-nav a.active {
-  color: white;
-}
-
-.fa-lg {
-  font-size: 1.5rem;
-}

@@ -1,12 +1,6 @@
 <div class="app-container">
   <menu-bar></menu-bar>
-  <div class="nav-container">
-    <nav>
-      <a [routerLink]="['/designer']" routerLinkActive="active"><i class="fa fa-eye fa-lg"></i></a>
-      <a [routerLink]="['/editor']" routerLinkActive="active"><i class="fa fa-code fa-lg"></i></a>
-    </nav>
-  </div>
-  <div class="main-container">
-    <router-outlet></router-outlet>
-  </div>
+  <navbar></navbar>
+  <sidebar></sidebar>
+  <main-section></main-section>
 </div>

@@ -1,7 +1,9 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 
-import { DesignerComponent } from './designer/designer.component.ts';
-import { EditorComponent } from './editor/editor.component.ts';
+import { DesignerComponent } from './+designer/index';
+import { EditorComponent } from './+editor/index';
+import { ToolboxComponent } from './+toolbox/index';
+import { ExplorerComponent } from './+explorer/index';
 
 const routes: RouterConfig = [
   {
@@ -16,6 +18,16 @@ const routes: RouterConfig = [
   {
     path: 'editor',
     component: EditorComponent
+  },
+  {
+    path: 'toolbox',
+    component: ToolboxComponent,
+    outlet: 'sidebar'
+  },
+  {
+    path: 'explorer',
+    component: ExplorerComponent,
+    outlet: 'sidebar'
   }
 ];
 
