@@ -1,0 +1,19 @@
+<div class="tree-view-node-container">
+  <div class="tree-view-node-data"
+       [class.focused]="node.isFocused"
+       [style.padding-left]="node.level + 1 + 'rem'"
+       (click)="node.onClick()"
+       (dbclick)="node.onDoubleClick()">
+    <div class="caret placeholder" *ngIf="!node.hasChildren"></div>
+    <svg class="caret closed" viewBox="0 0 10 10" *ngIf="node.hasChildren && !node.isExpanded">
+      <path d = "M 4 2 V 9 L 9 5.5 Z" fill="none" stroke="black" stroke-width="1.05" />
+    </svg>
+    <svg class="caret open" viewBox="0 0 10 10" *ngIf="node.hasChildren && node.isExpanded">
+      <path d = "M 9 2 V 9 H 2 Z" fill="black" />
+    </svg>
+    <span class="tree-view-node-name">{{node.data.name}}</span>
+  </div>
+  <div class="tree-view-node-children" *ngIf="node.hasChildren && node.isExpanded">
+    <tree-view-node *ngFor="let child of node.children" [node]="child"></tree-view-node>
+  </div>
+</div>

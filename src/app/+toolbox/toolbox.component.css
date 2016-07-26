@@ -1,0 +1,10 @@
+#toolbox-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label {
+  padding-top: .5rem;
+  padding-left: 1rem;
+  font-size: .8rem;
+  color: #646465;
+}

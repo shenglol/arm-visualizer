@@ -1,0 +1,36 @@
+.tree-view-node-data {
+  color: #646465;
+  padding: .15rem 0;
+  cursor: pointer;
+}
+
+.tree-view-node-data:hover {
+  background-color: #ededed;
+}
+
+.tree-view-node-data.focused {
+  background-color: #cccedb;
+}
+
+.tree-view-node-name {
+  padding-left: .2rem;
+}
+
+.caret {
+  width: .7rem;
+  height: .7rem;
+}
+
+.caret.closed path {
+  stroke: #646465;
+  fill: none;
+}
+
+.caret.open path {
+  fill: #646465;
+}
+
+.caret.placeholder {
+  display: inline-block;
+}
+
