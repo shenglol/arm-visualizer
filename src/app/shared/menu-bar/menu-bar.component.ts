@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NGB_DROPDOWN_DIRECTIVES } from '@ng-bootstrap/ng-bootstrap';
 
+import { TemplateManager } from '../../template-manager';
+
 @Component({
   selector: 'menu-bar',
   moduleId: __moduleName,
@@ -10,7 +12,7 @@ import { NGB_DROPDOWN_DIRECTIVES } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MenuBarComponent {
   openLocalTemplate() {
-    console.log('open local template');
+    document.getElementById('menu-open-local').click();
   }
 
   openQuickstartTemplate() {
@@ -23,5 +25,15 @@ export class MenuBarComponent {
 
   deployToAzure() {
     console.log('deploy to azure');
+  }
+
+  private onTemplateOpen(event: any) {
+    let reader = new FileReader();
+
+    reader.onload = (e) => {
+      TemplateManager.loadTemplate(reader.result);
+    };
+
+    reader.readAsText(event.srcElement.files[0]);
   }
 }
