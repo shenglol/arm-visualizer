@@ -1,3 +1,7 @@
+## Special Notice
+
+**sThis is a yet unreleased version of ArmViz 2.0.**
+
 ## Installation
 
 ```
