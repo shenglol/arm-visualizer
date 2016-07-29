@@ -1,70 +1,90 @@
 import { TreeViewNode } from '../shared/index';
 import { ToolboxItem } from './toolbox-item';
 
+export interface TreeNodeArray {
+    [index: string]: TreeViewNode;
+}
+
 export class ToolboxItems {
-
     public getGroups() {
-        var groups = new Array<TreeViewNode>();
+        let groups: TreeNodeArray = {};
+        let groupArr = new Array<TreeViewNode>();
+        const OtherGroupName: string = 'Other';
 
-        var allGroup = new TreeViewNode({ name: 'All' }, new Array<TreeViewNode>());
-        groups.push(allGroup);
-
-        var toolboxItems = this.getAllToolboxItems();
+        let toolboxItems = this.getAllToolboxItems();
         toolboxItems.forEach((item) => {
-          allGroup.children.push(new TreeViewNode({ name: item.name }, new Array<TreeViewNode>()));
+          let category = item.categoryName;
+          if (category == null) {
+            category = OtherGroupName;
+          }
+          if (groups[category] == null) {
+            let newCategoryNode = new TreeViewNode({ name: category }, new Array<TreeViewNode>());
+            groups[category] = newCategoryNode;
+            groupArr.push(newCategoryNode);
+          }
+
+          groups[category].children.push(new TreeViewNode({ name: item.name }, new Array<TreeViewNode>()));
         });
 
-        return groups;
+       return groupArr;
     }
 
     private getAllToolboxItems() {
-      var toolboxItems: Array<ToolboxItem> = [
+      let toolboxItems: Array<ToolboxItem> = [
         new ToolboxItem(
           'Virtual machine.png',
           'Virtual Machine',
           'Microsoft.Compute/virtualMachines',
-          true),
+          true,
+          'Compute'),
         new ToolboxItem(
           'Unidentified feature object.png',
           'VM Extension',
-          'Microsoft.Compute/virtualMachines/extensions'),
+          'Microsoft.Compute/virtualMachines/extensions',
+          false,
+          'Compute'),
         new ToolboxItem(
           'Availability Set.png',
           'Availability Set',
-          'Microsoft.Compute/availabilitySets'),
+          'Microsoft.Compute/availabilitySets',
+          false,
+          'Compute'),
         new ToolboxItem(
           'Azure load balancer.png',
           'Load Balancer',
           'Microsoft.Network/loadBalancers',
-          true),
+          true,
+          'Networking'),
         new ToolboxItem(
           'Virtual Network.png',
           'Network',
           'Microsoft.Network/virtualNetworks',
-          true),
+          true,
+          'Networking'),
         new ToolboxItem(
           'NIC.png',
           'NIC',
           'Microsoft.Network/networkInterfaces',
-          true),
+          true,
+          'Networking'),
         new ToolboxItem(
           'Service Endpoint.png',
           'Public IP',
           'Microsoft.Network/publicIPAddresses',
-          true),
+          true,
+          'Networking'),
         new ToolboxItem(
           'Unidentified feature object.png',
           'NSG',
-          'Microsoft.Network/networkSecurityGroups'),
-        new ToolboxItem(
-          'Unidentified feature object.png',
-          'App Gateway',
-          'Microsoft.Network/applicationGateways'),
+          'Microsoft.Network/networkSecurityGroups',
+          false,
+          'Networking'),
         new ToolboxItem(
           'Storage (Azure).png',
           'Storage Acct',
           'Microsoft.Storage/storageAccounts',
-          true),
+          true,
+          'Data & Storage'),
         new ToolboxItem(
           'Unidentified feature object.png',
           'Automation',
@@ -72,7 +92,8 @@ export class ToolboxItems {
         new ToolboxItem(
           'Logic App.png',
           'Workflow',
-          'Microsoft.Logic/workflows'),
+          'Microsoft.Logic/workflows',
+          false),
         new ToolboxItem(
           'Deployment.png',
           'Deployment',
@@ -80,11 +101,15 @@ export class ToolboxItems {
         new ToolboxItem(
           'Web App (was Websites).png',
           'Server Farm',
-          'Microsoft.Web/serverfarms'),
+          'Microsoft.Web/serverfarms',
+          false,
+          'Web & Mobile'),
         new ToolboxItem(
           'Cloud Service.png',
           'Hosting Env',
-          'Microsoft.Web/hostingEnvironments'),
+          'Microsoft.Web/hostingEnvironments',
+          false,
+          'Compute'),
         new ToolboxItem(
           'Key Vault.png',
           'Key Vault',
@@ -92,15 +117,9 @@ export class ToolboxItems {
         new ToolboxItem(
           'Azure SQL Database.png',
           'SQL Server',
-          'Microsoft.Sql/servers'),
-        new ToolboxItem(
-          'Web App (was Websites).png',
-          'Web App',
-          'Microsoft.Web/sites'),
-        new ToolboxItem(
-          'Web App (was Websites).png',
-          'Server Farm',
-          'Microsoft.Web/serverFarms'),
+          'Microsoft.Sql/servers',
+          false,
+          'Data & Storage'),
         new ToolboxItem(
           'Autoscaling.png',
           'Auto Scale',
@@ -116,11 +135,15 @@ export class ToolboxItems {
         new ToolboxItem(
           'Web App (was Websites).png',
           'Web Site',
-          'Microsoft.Web/Sites'),
+          'Microsoft.Web/Sites',
+          false,
+          'Web & Mobile'),
         new ToolboxItem(
           'API App.png',
           'API App',
-          'Microsoft.AppService/apiApps'),
+          'Microsoft.AppService/apiApps',
+          false,
+          'Web & Mobile'),
         new ToolboxItem(
           'Unidentified feature object.png',
           'App Gateway',
@@ -128,7 +151,9 @@ export class ToolboxItems {
         new ToolboxItem(
           'Availability Set.png',
           'VM Scale Set',
-          'Microsoft.Compute/virtualMachineScaleSets'),
+          'Microsoft.Compute/virtualMachineScaleSets',
+          false,
+          'Compute'),
         new ToolboxItem(
           'cdn.png',
           'CDN Profile',
