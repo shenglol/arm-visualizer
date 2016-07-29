@@ -7,4 +7,5 @@
   left: 0;
   display: -webkit-flex;
   display: flex;
+  overflow: hidden;
 }
