@@ -8,7 +8,7 @@ jspm install
 
 ## Building / Running
 
-To build:
+To build (switch slash direction if running on Windows):
 
 `./node_modules/.bin/gulp build`
 
