@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NGB_DROPDOWN_DIRECTIVES } from '@ng-bootstrap/ng-bootstrap';
 
-import { TemplateManager } from '../../template-manager';
+import { TemplateManager } from '../template-service';
 
 @Component({
-  selector: 'menu-bar',
   moduleId: __moduleName,
+  selector: 'menu-bar',
   templateUrl: 'menu-bar.component.html',
   styleUrls: ['menu-bar.component.css'],
   directives: [NGB_DROPDOWN_DIRECTIVES]

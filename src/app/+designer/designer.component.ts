@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TemplateManager } from '../template-manager';
+import { TemplateService } from '../shared/index';
 
 declare var cytoscape: any;
 
@@ -14,13 +14,25 @@ declare var cytoscape: any;
 export class DesignerComponent implements OnInit, OnDestroy {
   private subscription: any;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private templateService: TemplateService) { }
 
   ngOnInit() {
     this.router.navigateByUrl('/designer(sidebar:toolbox)');
-    this.subscription = TemplateManager.emitter.subscribe((data) => {
-      console.log(TemplateManager.template);
+
+    this.subscription = this.templateService.templateChanged.subscribe(() => {
+      this.refreshContent();
     });
+
+    this.refreshContent();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  private refreshContent() {
 
     var cy = cytoscape({
       container: document.getElementById('cy'),
@@ -115,9 +127,5 @@ export class DesignerComponent implements OnInit, OnDestroy {
         padding: 8
       }
     }); // cy init
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

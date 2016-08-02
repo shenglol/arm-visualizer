@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, ViewQuery } from '@angular/core';
 import { COMMON_DIRECTIVES  } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { TemplateManager } from '../template-manager';
+import { TemplateService } from '../shared/index';
 
 declare const monaco: any;
 declare const require: any;
@@ -17,15 +17,16 @@ declare const require: any;
 export class EditorComponent {
   @ViewChild('editor') editorContent: ElementRef;
 
-  private content: string = '';
   private subscription: any;
   private editor: any;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private templateService: TemplateService) { }
 
   ngOnInit() {
     this.router.navigateByUrl('/editor(sidebar:explorer)');
-    this.subscription = TemplateManager.emitter.subscribe((data) => {
+    this.subscription = this.templateService.templateChanged.subscribe(() => {
       this.refreshContent();
     });
   }
@@ -36,7 +37,7 @@ export class EditorComponent {
 
 
   ngAfterViewInit() {
-    var onGotAmdLoader = () => {
+    let onGotAmdLoader = () => {
       (<any>window).require(['vs/editor/editor.main'], () => {
         this.initMonaco();
         this.refreshContent();
@@ -44,7 +45,7 @@ export class EditorComponent {
     };
 
     if (!(<any>window).require) {
-      var loaderScript = document.createElement('script');
+      let loaderScript = document.createElement('script');
       loaderScript.type = 'text/javascript';
       loaderScript.src = 'vs/loader.js';
       loaderScript.addEventListener('load', onGotAmdLoader);
@@ -55,16 +56,15 @@ export class EditorComponent {
   }
 
   initMonaco() {
-    let myDiv: HTMLDivElement = this.editorContent.nativeElement;
-    this.editor = monaco.editor.create(myDiv, {
+    let editorDiv: HTMLDivElement = this.editorContent.nativeElement;
+    this.editor = monaco.editor.create(editorDiv, {
       value: '',
       language: 'json'
     });
     console.log(1);
   }
 
-   private refreshContent() {
-    this.editor.setValue(TemplateManager.template.toString());
+  private refreshContent() {
+    this.editor.setValue(this.templateService.template.toString());
   }
-
 }
