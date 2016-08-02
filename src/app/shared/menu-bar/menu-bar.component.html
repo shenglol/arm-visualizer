@@ -6,7 +6,7 @@
         <a class="nav-link" role="button" ngbDropdownToggle>File</a>
         <div class="dropdown-menu">
           <div>
-            <input id="menu-open-local" type="file" (change)="onTemplateOpen($event)" style="display: none" />
+            <input #fileInput type="file" (change)="onTemplateOpen($event)" style="display: none" />
             <a class="dropdown-item" role="button" (click)="openLocalTemplate()">Open Local Template...</a>
           </div>
           <a class="dropdown-item" role="button" (click)="openQuickstartTemplate()">Open Quickstart Template...</a>

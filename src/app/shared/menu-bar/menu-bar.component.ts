@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NGB_DROPDOWN_DIRECTIVES } from '@ng-bootstrap/ng-bootstrap';
 
-import { TemplateManager } from '../template-service';
+import { TemplateService } from '../template.service';
 
 @Component({
   moduleId: __moduleName,
@@ -11,8 +11,13 @@ import { TemplateManager } from '../template-service';
   directives: [NGB_DROPDOWN_DIRECTIVES]
 })
 export class MenuBarComponent {
+  @ViewChild('fileInput') fileInput: ElementRef;
+
+  constructor(private templateService: TemplateService) { }
+
   openLocalTemplate() {
-    document.getElementById('menu-open-local').click();
+    let fileInputElement: HTMLInputElement = this.fileInput.nativeElement;
+    fileInputElement.click();
   }
 
   openQuickstartTemplate() {
@@ -31,9 +36,10 @@ export class MenuBarComponent {
     let reader = new FileReader();
 
     reader.onload = (e) => {
-      TemplateManager.loadTemplate(reader.result);
+      this.templateService.loadTemplate(reader.result);
     };
 
     reader.readAsText(event.srcElement.files[0]);
+    event.srcElement.value = null;
   }
 }
