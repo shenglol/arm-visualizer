@@ -33,99 +33,82 @@ export class DesignerComponent implements OnInit, OnDestroy {
   }
 
   private refreshContent() {
+    if (!this.templateService.template.resources) {
+      return;
+    }
 
-    var cy = cytoscape({
+    let nodes: any[] = [];
+    let edges: any[] = [];
+
+    for (let resource of this.templateService.template.resources) {
+      let sourceId = resource.type + '/' + resource.name;
+      nodes.push({
+        group: 'nodes',
+        data: {
+          id: sourceId,
+          bg: [
+            'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="80"><g><g>',
+            '<text x="10" y="40">' + this.templateService.template.resolveName(resource) + '</text>',
+            '</g></g></svg>'
+          ].join('')
+        }
+      });
+
+      let dependencies = this.templateService.template.resolveDependencies(resource);
+      for (let dependency of dependencies) {
+        let targetId = dependency.type + '/' + dependency.name;
+        edges.push({
+          group: 'edges',
+          data: {
+            source: sourceId,
+            target: targetId
+          }
+        });
+      }
+    }
+
+    let cy = cytoscape({
       container: document.getElementById('cy'),
 
       boxSelectionEnabled: false,
       autounselectify: false,
 
-      style: cytoscape.stylesheet()
-        .selector('node')
-        .css({
-          'height': 80,
-          'width': 80,
-          'background-fit': 'cover',
-          'border-color': '#000',
-          'border-width': 3,
-          'border-opacity': 0.5
-        })
-        .selector('.eating')
-        .css({
-          'border-color': 'red'
-        })
-        .selector('.eater')
-        .css({
-          'border-width': 9
-        })
-        .selector('edge')
-        .css({
-          'width': 6,
-          'target-arrow-shape': 'triangle',
-          'line-color': '#ffaaaa',
-          'target-arrow-color': '#ffaaaa',
-          'curve-style': 'bezier'
-        })
-        .selector('#bird')
-        .css({
-          'background-image': 'https://farm8.staticflickr.com/7272/7633179468_3e19e45a0c_b.jpg'
-        })
-        .selector('#cat')
-        .css({
-          'background-image': 'https://farm2.staticflickr.com/1261/1413379559_412a540d29_b.jpg'
-        })
-        .selector('#ladybug')
-        .css({
-          'background-image': 'https://farm4.staticflickr.com/3063/2751740612_af11fb090b_b.jpg'
-        })
-        .selector('#aphid')
-        .css({
-          'background-image': 'https://farm9.staticflickr.com/8316/8003798443_32d01257c8_b.jpg'
-        })
-        .selector('#rose')
-        .css({
-          'background-image': 'https://farm6.staticflickr.com/5109/5817854163_eaccd688f5_b.jpg'
-        })
-        .selector('#grasshopper')
-        .css({
-          'background-image': 'https://farm7.staticflickr.com/6098/6224655456_f4c3c98589_b.jpg'
-        })
-        .selector('#plant')
-        .css({
-          'background-image': 'https://farm1.staticflickr.com/231/524893064_f49a4d1d10_z.jpg'
-        })
-        .selector('#wheat')
-        .css({
-          'background-image': 'https://farm3.staticflickr.com/2660/3715569167_7e978e8319_b.jpg'
-        }),
+      style: [
+        {
+          selector: 'node',
+          style: {
+            'shape': 'rectangle',
+            'background-image': 'data(bg)',
+            'height': 80,
+            'width': 200,
+            'text-opacity': 0.5,
+            'text-valign': 'center',
+            'text-halign': 'right',
+            'background-color': '#11479e'
+          }
+        },
 
-      elements: {
-        nodes: [
-          { data: { id: 'cat' } },
-          { data: { id: 'bird' } },
-          { data: { id: 'ladybug' } },
-          { data: { id: 'aphid' } },
-          { data: { id: 'rose' } },
-          { data: { id: 'grasshopper' } },
-          { data: { id: 'plant' } },
-          { data: { id: 'wheat' } }
-        ],
-        edges: [
-          { data: { source: 'cat', target: 'bird' } },
-          { data: { source: 'bird', target: 'ladybug' } },
-          { data: { source: 'bird', target: 'grasshopper' } },
-          { data: { source: 'grasshopper', target: 'plant' } },
-          { data: { source: 'grasshopper', target: 'wheat' } },
-          { data: { source: 'ladybug', target: 'aphid' } },
-          { data: { source: 'aphid', target: 'rose' } }
-        ]
-      },
-
-      layout: {
-        name: 'breadthfirst',
-        directed: true,
-        padding: 8
-      }
+        {
+          selector: 'edge',
+          style: {
+            'width': 4,
+            'target-arrow-shape': 'triangle',
+            'line-color': '#9dbaea',
+            'target-arrow-color': '#9dbaea',
+            'curve-style': 'bezier'
+          }
+        }
+      ]
     }); // cy init
+
+    cy.add(nodes);
+    cy.add(edges);
+
+    cy.layout({
+      name: 'breadthfirst',
+      directed: true,
+      padding: 100,
+      avoidOverlap: true
+    });
   }
 }

@@ -1,5 +1,4 @@
-import { Component, ViewChild, ElementRef, ViewQuery } from '@angular/core';
-import { COMMON_DIRECTIVES  } from '@angular/common';
+import { Component, onInit, onDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TemplateService } from '../shared/index';
@@ -11,8 +10,7 @@ declare const require: any;
   moduleId: __moduleName,
   selector: 'editor',
   templateUrl: 'editor.component.html',
-  styleUrls: ['editor.component.css'],
-  directives: [COMMON_DIRECTIVES]
+  styleUrls: ['editor.component.css']
 })
 export class EditorComponent {
   @ViewChild('editor') editorContent: ElementRef;
@@ -26,17 +24,11 @@ export class EditorComponent {
 
   ngOnInit() {
     this.router.navigateByUrl('/editor(sidebar:explorer)');
+
     this.subscription = this.templateService.templateChanged.subscribe(() => {
       this.refreshContent();
     });
-  }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-
-  ngAfterViewInit() {
     let onGotAmdLoader = () => {
       (<any>window).require(['vs/editor/editor.main'], () => {
         this.initMonaco();
@@ -55,13 +47,16 @@ export class EditorComponent {
     }
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   initMonaco() {
     let editorDiv: HTMLDivElement = this.editorContent.nativeElement;
     this.editor = monaco.editor.create(editorDiv, {
       value: '',
       language: 'json'
     });
-    console.log(1);
   }
 
   private refreshContent() {
