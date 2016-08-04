@@ -9,19 +9,34 @@
             <input #fileInput type="file" (change)="onTemplateOpen($event)" style="display: none" />
             <a class="dropdown-item" role="button" (click)="openLocalTemplate()">Open Local Template...</a>
           </div>
-          <a class="dropdown-item" role="button" (click)="openQuickstartTemplate()">Open Quickstart Template...</a>
+          <!--<a class="dropdown-item" role="button" (click)="openQuickstartTemplate()">Open Quickstart Template...</a>-->
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" role="button" (click)="exportTemplate()">Export Template</a>
         </div>
       </div>
     </li>
-    <li class="nav-item">
+    <!--<li class="nav-item">
       <div ngbDropdown>
         <a class="nav-link" role="button" ngbDropdownToggle>Azure</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" role="button" (click)="deployToAzure()">Deploy to Azure</a>
         </div>
       </div>
+    </li>-->
+    <li class="nav-item pull-md-right">
+      <a class="nav-link" href="http://www.instant.ly/s/DDMwi" target="_blank">
+        <i class="fa fa-gratipay fa-lg" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="nav-item pull-md-right">
+      <a class="nav-link" href="github.com/msshli/arm-visualizer" target="_blank">
+        <i class="fa fa-github fa-lg" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="nav-item pull-md-right">
+      <a class="nav-link" href="https://azure.microsoft.com/en-us/documentation/articles/resource-group-authoring-templates/" target="_blank">
+        <i class="fa fa-question-circle fa-lg" aria-hidden="true"></i>
+      </a>
     </li>
   </ul>
 </nav>
