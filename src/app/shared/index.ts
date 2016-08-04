@@ -1,4 +1,4 @@
-export * from './constants/resource-type-map';
+export * from './constants/resource-type-maps';
 
 export * from './services/template.service';
 

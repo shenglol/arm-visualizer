@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { RESOURCE_TYPE_MAP } from '../shared/index';
+import { TYPE_DISPLAY_NAME_MAP, TYPE_ICON_NAME_MAP, DEFAULT_ICON_NAME } from '../shared/index';
 
 @Injectable()
 export class DesignerService {
   constructor(private http: Http) { }
 
   getNodeBackground(resourceType: string): Observable<string> {
-    let iconName = RESOURCE_TYPE_MAP[resourceType] || 'Gear';
+    let iconName = TYPE_ICON_NAME_MAP[resourceType] || DEFAULT_ICON_NAME;
     let iconUrl = 'assets/icons/svg/' + iconName.replace(/\s+/g, '') + '.svg';
 
     return this.http.get(iconUrl)
       .map((res: Response) => {
-        resourceType = RESOURCE_TYPE_MAP[resourceType] || resourceType;
+        resourceType = TYPE_DISPLAY_NAME_MAP[resourceType] || resourceType;
         resourceType = resourceType.length > 24 ? resourceType.substr(0, 21) + '...' : resourceType;
         return this.generateSVGBackground(res, resourceType);
       })
