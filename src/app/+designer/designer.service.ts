@@ -10,7 +10,7 @@ export class DesignerService {
 
   getNodeBackground(resourceType: string): Observable<string> {
     let iconName = RESOURCE_TYPE_MAP[resourceType] || 'Gear';
-    let iconUrl = 'assets/icons/svg/' + iconName + '.svg';
+    let iconUrl = 'assets/icons/svg/' + iconName.replace(/\s+/g, '') + '.svg';
 
     return this.http.get(iconUrl)
       .map((res: Response) => {
