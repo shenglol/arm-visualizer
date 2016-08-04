@@ -3,7 +3,12 @@
   height: 100%;
 }
 
-#main-section-container {
-  width: 100%;
+#diagram-container {
   height: 100%;
+  width: 100%;
+}
+
+#cy {
+  height: 100%;
+  width: 100%;
 }

@@ -1,0 +1,19 @@
+:host {
+  width: 22rem;
+  height: 100%;
+  display: none;
+}
+
+
+#toolbox-container {
+  width: 22rem;
+  height: 100%;
+  background-color: #f3f3f3;
+}
+
+label {
+  padding-top: .5rem;
+  padding-left: 1rem;
+  font-size: .8rem;
+  color: #646465;
+}

@@ -1,3 +1,6 @@
 <div id="sidebar-container">
-  <router-outlet name="sidebar"></router-outlet>
+  <nav>
+    <a [routerLink]="['/designer']" routerLinkActive="active"><i class="fa fa-eye fa-lg"></i></a>
+    <a [routerLink]="['/editor']" routerLinkActive="active"><i class="fa fa-code fa-lg"></i></a>
+  </nav>
 </div>

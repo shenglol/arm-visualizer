@@ -8,6 +8,4 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   styleUrls: ['sidebar.component.css'],
   directives: [ROUTER_DIRECTIVES]
 })
-export class SidebarComponent {
-
-}
+export class SidebarComponent { }

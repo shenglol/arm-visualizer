@@ -1,5 +1,27 @@
 #sidebar-container {
-  width: 22rem;
+  width: auto;
   height: 100%;
-  background-color: #f3f3f3;
+  background-color: #2c2c2c;
+}
+
+nav a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+nav a:visited, a:link {
+  color: gray;
+}
+
+nav a:hover {
+  color: white;
+}
+
+nav a.active {
+  color: white;
+}
+
+.fa-lg {
+  font-size: 1.5rem;
 }

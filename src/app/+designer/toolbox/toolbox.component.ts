@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { TreeViewNode, TreeViewComponent } from '../shared/index';
+import { TreeViewNode, TreeViewComponent } from '../../shared/index';
 import { ToolboxItems } from './toolbox-items';
 
 @Component({

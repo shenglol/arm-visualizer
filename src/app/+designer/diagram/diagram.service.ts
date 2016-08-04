@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { TYPE_DISPLAY_NAME_MAP, TYPE_ICON_NAME_MAP, DEFAULT_ICON_NAME } from '../shared/index';
+import { TYPE_DISPLAY_NAME_MAP, TYPE_ICON_NAME_MAP, DEFAULT_ICON_NAME } from '../../shared/index';
 
 @Injectable()
-export class DesignerService {
+export class DiagramService {
   constructor(private http: Http) { }
 
   getNodeBackground(resourceType: string): Observable<string> {

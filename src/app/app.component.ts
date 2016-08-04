@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 
 import {
   MenuBarComponent,
-  NavbarComponent,
   SidebarComponent,
-  MainSectionComponent
+  WorkbenchComponent
 } from './shared/index';
 
 @Component({
@@ -14,9 +13,8 @@ import {
   styleUrls: ['app.component.css'],
   directives: [
     MenuBarComponent,
-    NavbarComponent,
     SidebarComponent,
-    MainSectionComponent
+    WorkbenchComponent
   ]
 })
 export class AppComponent {

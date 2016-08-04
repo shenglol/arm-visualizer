@@ -1,15 +1,11 @@
 :host {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
 
-.designer-container {
+#designer-container {
   height: 100%;
   width: 100%;
-  padding: .1rem;
-}
-
-#cy {
-  height: 100%;
-  width: 100%;
+  display: -webkit-flex;
+  display: flex;
 }
