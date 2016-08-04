@@ -13,12 +13,3 @@
   height: 100%;
   width: 100%;
 }
-
-#eat {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  font-size: 1rem;
-  z-index: -1;
-  color: #c88;
-}
