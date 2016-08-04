@@ -20,17 +20,17 @@ export class MenuBarComponent {
     fileInputElement.click();
   }
 
-  openQuickstartTemplate() {
-    console.log('open quickstart template');
-  }
+  // openQuickstartTemplate() {
+  //   console.log('open quickstart template');
+  // }
 
   exportTemplate() {
     console.log('export template');
   }
 
-  deployToAzure() {
-    console.log('deploy to azure');
-  }
+  // deployToAzure() {
+  //   console.log('deploy to azure');
+  // }
 
   private onTemplateOpen(event: any) {
     let reader = new FileReader();
