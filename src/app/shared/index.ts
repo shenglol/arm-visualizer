@@ -1,4 +1,6 @@
-export * from './template.service';
+export * from './constants/resource-type-map';
+
+export * from './services/template.service';
 
 export * from './menu-bar/index';
 export * from './sidebar/index';
