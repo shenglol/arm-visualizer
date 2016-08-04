@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import {
   MenuBarComponent,
-  NavbarComponent,
+  SidebarComponent,
   WorkbenchComponent
 } from './shared/index';
 
@@ -13,7 +13,7 @@ import {
   styleUrls: ['app.component.css'],
   directives: [
     MenuBarComponent,
-    NavbarComponent,
+    SidebarComponent,
     WorkbenchComponent
   ]
 })
