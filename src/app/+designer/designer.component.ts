@@ -47,22 +47,22 @@ export class DesignerComponent implements OnInit, OnDestroy {
 
     for (let resource of this.templateService.template.resources) {
       let sourceId = resource.type + '/' + resource.name;
-      let resourceType = resource.type;
-      let resourceName = this.templateService.template.resolveName(resource);
+      let label = this.templateService.template.resolveName(resource);
 
-      this.designerService.getNodeBackground(resourceType).subscribe(
+      this.designerService.getNodeBackground(resource.type).subscribe(
         background => {
           nodes.push({
             group: 'nodes',
             data: {
               id: sourceId,
-              bg: background
+              label: label.length > 20 ? label.substring(0, 17) + '...' : label,
+              background: background
             }
           });
 
-          let dependencies = this.templateService.template.resolveDependencies(resource);
-          for (let dependency of dependencies) {
+          for (let dependency of this.templateService.template.resolveDependencies(resource)) {
             let targetId = dependency.type + '/' + dependency.name;
+
             edges.push({
               group: 'edges',
               data: {
@@ -77,6 +77,7 @@ export class DesignerComponent implements OnInit, OnDestroy {
           }
         },
         error => {
+          // todo: real error handling
           console.log(error);
         }
       );
@@ -95,21 +96,30 @@ export class DesignerComponent implements OnInit, OnDestroy {
         {
           selector: 'node',
           style: {
+            'content': 'data(label)',
             'shape': 'rectangle',
-            'background-image': 'data(bg)',
-            'height': 90,
+            'background-image': 'data(background)',
+            'background-opacity': '0',
+            'text-valign': 'top',
+            'text-halign': 'right',
+            'text-margin-x': -195,
+            'text-margin-y': 45,
+            'font-family': 'Segoe UI Semibold',
+            'font-size': 20,
+            'font-weight': 'bold',
+            'color': '#5c5c5c',
             'width': 280,
-            'background-opacity': '0'
+            'height': 90
           }
         },
 
         {
           selector: 'edge',
           style: {
-            'width': 2,
+            'width': 4,
             'target-arrow-shape': 'triangle',
-            'line-color': '#d3d3d3',
-            'target-arrow-color': '#d3d3d3',
+            'line-color': '#cccedb',
+            'target-arrow-color': '#cccedb',
             'curve-style': 'bezier'
           }
         }
@@ -119,11 +129,14 @@ export class DesignerComponent implements OnInit, OnDestroy {
     this.cy.add(nodes);
     this.cy.add(edges);
 
+    this.cy.minZoom(.1);
+    this.cy.maxZoom(4);
+
     this.cy.layout({
       name: 'breadthfirst',
       directed: true,
-      padding: 80,
-      spacingFactor: 1.05,
+      padding: 50,
+      spacingFactor: 1.1,
       avoidOverlap: true
     });
   }

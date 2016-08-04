@@ -2,23 +2,33 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
+import { RESOURCE_TYPE_MAP } from '../shared/index';
+
 @Injectable()
 export class DesignerService {
   constructor(private http: Http) { }
 
   getNodeBackground(resourceType: string): Observable<string> {
-    return this.http.get('assets/icons/svg/SQLDatabase.svg')
+    let iconName = RESOURCE_TYPE_MAP[resourceType] || 'Gear';
+    let iconUrl = 'assets/icons/svg/' + iconName + '.svg';
+
+    return this.http.get(iconUrl)
       .map((res: Response) => {
+        resourceType = RESOURCE_TYPE_MAP[resourceType] || resourceType;
+        resourceType = resourceType.length > 24 ? resourceType.substr(0, 21) + '...' : resourceType;
         return this.generateSVGBackground(res, resourceType);
       })
       .catch(this.handleError);
   }
 
   private generateSVGBackground(res: Response, resourceType: string): Observable<string> {
-
     let rect = '<rect width="100%" height="100%" rx="2" ry="2" fill="#f3f3f3"></rect>';
     let icon = '<g transform="translate(20,20)">' + this.converToSingleLine(res.text()) + '</g>';
-    let type = '<text x="80" y="65" font-family="Helvetica,Arial,sans-serif" font-size="0.8rem" fill="#646465">' + resourceType + '</text>';
+    let type = [
+      '<text x="85" y="65" font-family="Segoe UI" font-size="16" fill="#9c9c9c">',
+      resourceType,
+      '</text>'
+    ].join('');
 
     let svgBackground = [
       'data:image/svg+xml;utf8,',
