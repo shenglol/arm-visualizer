@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { DiagramService } from './diagram.service';
 import { TemplateService } from '../../shared/index';
@@ -18,7 +17,6 @@ export class DiagramComponent implements OnInit, OnDestroy {
   private cy: any;
 
   constructor(
-    private router: Router,
     private templateService: TemplateService,
     private designerService: DiagramService) { }
 
@@ -32,7 +30,9 @@ export class DiagramComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    this.cy.destroy();
+    if (this.cy) {
+      this.cy.destroy();
+    }
   }
 
   private refreshContent() {

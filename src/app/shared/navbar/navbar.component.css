@@ -10,16 +10,16 @@ nav a {
   text-decoration: none;
 }
 
+nav a:visited, a:link {
+  color: gray;
+}
+
 nav a:hover {
   color: white;
 }
 
 nav a.active {
   color: white;
-}
-
-nav a.inactive {
-  color: gray;
 }
 
 .fa-lg {

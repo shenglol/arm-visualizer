@@ -1,0 +1,10 @@
+:host {
+  width: 22rem;
+  height: 100%;
+}
+
+#explorer-container {
+  width: 22rem;
+  height: 100%;
+  background-color: #f3f3f3;
+}

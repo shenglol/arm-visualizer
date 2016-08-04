@@ -1,20 +1,11 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 
 import { DesignerRoutes } from './+designer/index';
-import { EditorComponent } from './+editor/index';
-import { ExplorerComponent } from './+explorer/index';
+import { EditorRoutes } from './+editor/index';
 
 const routes: RouterConfig = [
   ...DesignerRoutes,
-  {
-    path: 'editor',
-    component: EditorComponent
-  },
-  {
-    path: 'explorer',
-    component: ExplorerComponent,
-    outlet: 'sidebar'
-  }
+  ...EditorRoutes
 ];
 
 export const APP_ROUTER_PROVIDERS = [
