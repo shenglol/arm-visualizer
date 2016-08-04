@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import {
   MenuBarComponent,
   NavbarComponent,
-  SidebarComponent,
   MainSectionComponent
 } from './shared/index';
 
@@ -15,7 +14,6 @@ import {
   directives: [
     MenuBarComponent,
     NavbarComponent,
-    SidebarComponent,
     MainSectionComponent
   ]
 })

@@ -1,4 +1,4 @@
-import { TreeViewNode } from '../shared/index';
+import { TreeViewNode } from '../../shared/index';
 import { ToolboxItem } from './toolbox-item';
 
 export interface TreeNodeArray {

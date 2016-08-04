@@ -1,5 +1,14 @@
+:host {
+  width: 22rem;
+  height: 100%;
+}
+
+
 #toolbox-container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 22rem;
+  height: 100%;
+  background-color: #f3f3f3;
 }
 
 label {
