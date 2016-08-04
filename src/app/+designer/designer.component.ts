@@ -130,7 +130,7 @@ export class DesignerComponent implements OnInit, OnDestroy {
     this.cy.add(nodes);
     this.cy.add(edges);
 
-    this.cy.minZoom(.1);
+    this.cy.minZoom(.2);
     this.cy.maxZoom(4);
 
     this.cy.layout({
