@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import {
   MenuBarComponent,
   NavbarComponent,
-  MainSectionComponent
+  WorkbenchComponent
 } from './shared/index';
 
 @Component({
@@ -14,7 +14,7 @@ import {
   directives: [
     MenuBarComponent,
     NavbarComponent,
-    MainSectionComponent
+    WorkbenchComponent
   ]
 })
 export class AppComponent {
