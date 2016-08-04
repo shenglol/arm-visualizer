@@ -91,6 +91,7 @@ export class DesignerComponent implements OnInit, OnDestroy {
 
       boxSelectionEnabled: false,
       autounselectify: false,
+      wheelSensitivity: .2,
 
       style: [
         {
