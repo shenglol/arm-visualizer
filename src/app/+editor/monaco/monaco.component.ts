@@ -55,6 +55,6 @@ export class MonacoComponent {
   }
 
   private refreshContent() {
-    this.editor.setValue(this.templateService.template.toString());
+    this.editor.setValue(this.templateService.templateData);
   }
 }

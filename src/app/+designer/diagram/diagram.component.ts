@@ -36,16 +36,12 @@ export class DiagramComponent implements OnInit, OnDestroy {
   }
 
   private refreshContent() {
-    if (!this.templateService.template.resources) {
-      return;
-    }
-
     let nodes: any[] = [];
     let edges: any[] = [];
 
-    for (let resource of this.templateService.template.resources) {
+    for (let resource of this.templateService.getAllResources()) {
       let sourceId = resource.type + '/' + resource.name;
-      let label = this.templateService.template.resolveName(resource);
+      let label = this.templateService.resolveExpression(resource.name);
 
       this.designerService.getNodeBackground(resource.type).subscribe(
         background => {
@@ -58,7 +54,7 @@ export class DiagramComponent implements OnInit, OnDestroy {
             }
           });
 
-          for (let dependency of this.templateService.template.resolveDependencies(resource)) {
+          for (let dependency of this.templateService.getDependencies(resource)) {
             let targetId = dependency.type + '/' + dependency.name;
 
             edges.push({
@@ -70,7 +66,7 @@ export class DiagramComponent implements OnInit, OnDestroy {
             });
           }
 
-          if (nodes.length === this.templateService.template.resources.length) {
+          if (nodes.length === this.templateService.getAllResources().length) {
             this.drawDiagram(nodes, edges);
           }
         },

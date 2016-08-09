@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NGB_DROPDOWN_DIRECTIVES } from '@ng-bootstrap/ng-bootstrap';
 
-import { TemplateService } from '../services/template.service';
+import { TemplateService } from '../template/template.service';
 
 @Component({
   moduleId: __moduleName,
