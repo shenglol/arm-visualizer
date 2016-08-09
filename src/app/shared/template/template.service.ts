@@ -26,6 +26,8 @@ export class TemplateService {
   loadTemplate(data: string) {
     this.engine.loadTemplate(data);
     this._templateChanged.emit();
+
+    this.reportErrors();
   }
 
   resolveExpression(source: string) {
@@ -44,6 +46,8 @@ export class TemplateService {
     let templateErrors = this.engine.errorManager.templateErrors;
     let expressionErrors = this.engine.errorManager.expressionErrors;
 
+    console.clear();
+
     if (templateErrors.length > 0) {
       console.log('Template Errors:');
     }
@@ -53,7 +57,7 @@ export class TemplateService {
     }
 
     if (Object.keys(expressionErrors).length > 0) {
-      console.log('Expression Errors');
+      console.log('Expression Errors:');
     }
 
     for (let expression of Object.keys(expressionErrors)) {
