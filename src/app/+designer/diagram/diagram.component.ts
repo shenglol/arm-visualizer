@@ -68,6 +68,7 @@ export class DiagramComponent implements OnInit, OnDestroy {
 
           if (nodes.length === this.templateService.getAllResources().length) {
             this.drawDiagram(nodes, edges);
+            this.templateService.reportErrors();
           }
         },
         error => {

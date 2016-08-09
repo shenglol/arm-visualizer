@@ -26,10 +26,6 @@ export class TemplateService {
   loadTemplate(data: string) {
     this.engine.loadTemplate(data);
     this._templateChanged.emit();
-
-    // TODO: error report console
-    console.error('Template Errors:');
-    console.log(this.engine.errorManager.templateErrors);
   }
 
   resolveExpression(source: string) {
@@ -42,5 +38,29 @@ export class TemplateService {
 
   getDependencies(resource: Resource): Resource[] {
     return this.engine.getDependencies(resource);
+  }
+
+  reportErrors() {
+    let templateErrors = this.engine.errorManager.templateErrors;
+    let expressionErrors = this.engine.errorManager.expressionErrors;
+
+    if (templateErrors.length > 0) {
+      console.log('Template Errors:');
+    }
+
+    for (let templateError of templateErrors) {
+      console.log('\t' + templateError);
+    }
+
+    if (Object.keys(expressionErrors).length > 0) {
+      console.log('Expression Errors');
+    }
+
+    for (let expression of Object.keys(expressionErrors)) {
+      console.log('\t' + expression);
+      for (let expressionError of expressionErrors[expression]) {
+        console.log('\t\t' + expressionError);
+      }
+    }
   }
 }
