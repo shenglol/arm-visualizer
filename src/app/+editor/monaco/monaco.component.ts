@@ -44,6 +44,8 @@ export class MonacoComponent {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.templateService.loadTemplate(this.editor.getValue());
+
   }
 
   initMonaco() {
