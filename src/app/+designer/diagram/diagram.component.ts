@@ -126,12 +126,12 @@ export class DiagramComponent implements OnInit, OnDestroy {
     this.cy.add(edges);
 
     this.cy.minZoom(.2);
-    this.cy.maxZoom(4);
+    this.cy.maxZoom(2);
 
     this.cy.layout({
       name: 'breadthfirst',
       directed: true,
-      padding: 50,
+      padding: 70,
       spacingFactor: 1.1,
       avoidOverlap: true
     });
