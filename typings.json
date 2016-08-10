@@ -9,6 +9,8 @@
     "@angular/http": "file:jspm_packages/npm/@angular/http@2.0.0-rc.4/index.d.ts",
     "@angular/platform-browser-dynamic": "file:jspm_packages/npm/@angular/platform-browser-dynamic@2.0.0-rc.4/index.d.ts",
     "@angular/platform-browser": "file:jspm_packages/npm/@angular/platform-browser@2.0.0-rc.4/index.d.ts",
-    "@angular/router": "file:jspm_packages/npm/@angular/router@3.0.0-beta.2/index.d.ts"
+    "@angular/router": "file:jspm_packages/npm/@angular/router@3.0.0-beta.2/index.d.ts",
+    "@ng-bootstrap/ng-bootstrap": "file:jspm_packages/npm/@ng-bootstrap/ng-bootstrap@1.0.0-alpha.1/index.d.ts",
+    "@ngrx/store": "file:jspm_packages/npm/@ngrx/store@2.0.1/index.d.ts"
   }
 }

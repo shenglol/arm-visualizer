@@ -6,3 +6,5 @@
 /// <reference path="modules/@angular/platform-browser-dynamic/index.d.ts" />
 /// <reference path="modules/@angular/platform-browser/index.d.ts" />
 /// <reference path="modules/@angular/router/index.d.ts" />
+/// <reference path="modules/@ng-bootstrap/ng-bootstrap/index.d.ts" />
+/// <reference path="modules/@ngrx/store/index.d.ts" />

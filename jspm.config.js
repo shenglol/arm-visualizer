@@ -250,6 +250,8 @@ SystemJS.config({
     '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic@2.0.0-rc.4',
     '@angular/router': 'npm:@angular/router@3.0.0-beta.2',
     '@ng-bootstrap/ng-bootstrap': 'npm:@ng-bootstrap/ng-bootstrap@1.0.0-alpha.1',
+    '@ngrx/core': 'npm:@ngrx/core@1.0.1',
+    '@ngrx/store': 'npm:@ngrx/store@2.0.1',
     'arm-visualizer-engine': 'npm:arm-visualizer-engine@0.0.9',
     'buffer': 'github:jspm/nodelibs-buffer@0.2.0-alpha',
     'es6-promise': 'npm:es6-promise@3.2.1',
