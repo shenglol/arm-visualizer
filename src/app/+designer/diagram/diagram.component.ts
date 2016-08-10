@@ -3,7 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DiagramService } from './diagram.service';
 import { TemplateService } from '../../shared/index';
 
-declare var cytoscape: any;
+declare const __moduleName: string;
+declare const cytoscape: any;
 
 @Component({
   moduleId: __moduleName,

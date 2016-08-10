@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 
 import { TreeViewNode } from './tree-view-node';
 
+declare const __moduleName: string;
+
 @Component({
   moduleId: __moduleName,
   selector: 'tree-view-node',

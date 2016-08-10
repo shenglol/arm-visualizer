@@ -5,6 +5,8 @@ import { ExplorerComponent } from './explorer/index';
 import { MonacoComponent } from './monaco/index';
 import { TemplateService } from '../shared/index';
 
+declare const __moduleName: string;
+
 @Component({
   moduleId: __moduleName,
   selector: 'editor',

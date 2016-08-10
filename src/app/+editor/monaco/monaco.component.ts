@@ -2,6 +2,7 @@ import { Component, onInit, onDestroy, ViewChild, ElementRef } from '@angular/co
 
 import { TemplateService } from '../../shared/index';
 
+declare const __moduleName: string;
 declare const monaco: any;
 declare const require: any;
 

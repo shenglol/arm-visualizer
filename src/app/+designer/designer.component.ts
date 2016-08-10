@@ -5,6 +5,8 @@ import { ToolboxComponent } from './toolbox/index';
 import { DiagramComponent } from './diagram/index';
 import { TemplateService } from '../shared/index';
 
+declare const __moduleName: string;
+
 @Component({
   moduleId: __moduleName,
   selector: 'designer',

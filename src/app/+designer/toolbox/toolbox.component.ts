@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { TreeViewNode, TreeViewComponent } from '../../shared/index';
 import { ToolboxItems } from './toolbox-items';
 
+declare const __moduleName: string;
+
 @Component({
   moduleId: __moduleName,
   selector: 'toolbox',
