@@ -1,7 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NGB_DROPDOWN_DIRECTIVES } from '@ng-bootstrap/ng-bootstrap';
-
+import { saveAs } from 'file-saver';
 import { TemplateService } from '../template/template.service';
+
+declare const __moduleName: string;
 
 @Component({
   moduleId: __moduleName,
@@ -25,7 +27,9 @@ export class MenuBarComponent {
   // }
 
   exportTemplate() {
-    console.log('export template');
+    let templateData = this.templateService.templateData;
+    let blob = new Blob([templateData], { type: 'text/json;charset=utf-8' });
+    saveAs(blob, 'template.json');
   }
 
   // deployToAzure() {
