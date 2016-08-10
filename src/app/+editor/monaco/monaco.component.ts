@@ -12,7 +12,7 @@ declare const require: any;
   styleUrls: ['monaco.component.css']
 })
 export class MonacoComponent {
-  @ViewChild('editor') editorContent: ElementRef;
+  @ViewChild('editor') editorElementRef: ElementRef;
 
   private subscription: any;
   private editor: any;
@@ -20,38 +20,23 @@ export class MonacoComponent {
   constructor(private templateService: TemplateService) { }
 
   ngOnInit() {
-    this.subscription = this.templateService.templateChanged.subscribe(() => {
-      this.refreshContent();
-    });
-
-    let onGotAmdLoader = () => {
-      (<any>window).require(['vs/editor/editor.main'], () => {
-        this.initMonaco();
+    (<any>window).require(['vs/editor/editor.main'], () => {
+      this.initMonaco();
+      this.subscription = this.templateService.templateChanged.subscribe(() => {
         this.refreshContent();
       });
-    };
-
-    if (!(<any>window).require) {
-      let loaderScript = document.createElement('script');
-      loaderScript.type = 'text/javascript';
-      loaderScript.src = 'vs/loader.js';
-      loaderScript.addEventListener('load', onGotAmdLoader);
-      document.body.appendChild(loaderScript);
-    } else {
-      onGotAmdLoader();
-    }
+    });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.templateService.loadTemplate(this.editor.getValue());
-
   }
 
-  initMonaco() {
-    let editorDiv: HTMLDivElement = this.editorContent.nativeElement;
+  private initMonaco() {
+    let editorDiv: HTMLDivElement = this.editorElementRef.nativeElement;
     this.editor = monaco.editor.create(editorDiv, {
-      value: '',
+      value: this.templateService.templateData,
       language: 'json'
     });
   }

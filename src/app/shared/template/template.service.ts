@@ -1,7 +1,9 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 
 import { Resource, Template, TemplateEngine } from 'arm-visualizer-engine';
 
+@Injectable()
 export class TemplateService {
   private engine: TemplateEngine;
   private _templateChanged: EventEmitter;
@@ -18,7 +20,7 @@ export class TemplateService {
     return this._templateChanged;
   }
 
-  constructor() {
+  constructor(private http: Http) {
     this.engine = new TemplateEngine();
     this._templateChanged = new EventEmitter();
   }
@@ -26,8 +28,19 @@ export class TemplateService {
   loadTemplate(data: string) {
     this.engine.loadTemplate(data);
     this._templateChanged.emit();
-
     this.reportErrors();
+  }
+
+  loadTemplateFromUrl(url: string) {
+    console.log(url);
+    this.http.get(url)
+      .map((res: Response) => res.text())
+      .subscribe(data => {
+        console.log(data);
+        this.loadTemplate(data);
+      }, error => {
+        console.log(error);
+      });
   }
 
   resolveExpression(source: string) {
