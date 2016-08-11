@@ -9,6 +9,11 @@ export const DesignerRoutes: RouterConfig = [
     pathMatch: 'full'
   },
   {
+    path: '**',
+    redirectTo: '/designer',
+    pathMatch: 'full'
+  },
+  {
     path: 'designer',
     component: DesignerComponent
   },
