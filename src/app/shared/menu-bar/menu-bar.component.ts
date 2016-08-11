@@ -43,7 +43,8 @@ export class MenuBarComponent {
       this.templateService.loadTemplate(reader.result);
     };
 
-    reader.readAsText(event.srcElement.files[0]);
-    event.srcElement.value = null;
+    let srcElement = event.srcElement || event.originalTarget;
+    reader.readAsText(srcElement.files[0]);
+    srcElement.value = null;
   }
 }
