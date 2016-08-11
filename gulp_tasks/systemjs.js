@@ -23,7 +23,7 @@ function systemjs(done) {
     ]
   });
   builder.buildStatic(
-    '.tmp/templates/index.ts',
+    '.tmp/templates/app/main.ts',
     conf.path.tmp('index.js'),
     {
       production: true,
@@ -51,12 +51,8 @@ function replaceTemplates() {
 function updateIndexHtml() {
   return gulp.src(conf.path.src('index.html'))
     .pipe(replace(
-      /<link rel="stylesheet" href="src\/assets\/css\/bootstrap.min.css" \/>/,
-      `<link rel="stylesheet" href="assets/css/bootstrap.min.css" />`
-    )).
-    pipe(replace(
-      /<link rel="stylesheet" href="src\/assets\/css\/font-awesome.min.css" \/>/,
-      `<link rel="stylesheet" href="assets/css/font-awesome.min.css" />`
+      /src\//g,
+      ``
     ))
     .pipe(replace(
       /<script src="jspm_packages\/system.js">[\s\S]*<\/script>/,

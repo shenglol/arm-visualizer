@@ -25,16 +25,28 @@ export class MonacoComponent {
     private templateService: TemplateService) { }
 
   ngOnInit() {
-    (<any>window).require(['vs/editor/editor.main'], () => {
-      this.initMonaco();
-      this.subscription = this.templateService.templateChanged.subscribe(() => {
-        this.refreshContent();
+    let onAmdLoaderLoad = () => {
+      (<any>window).require(['vs/editor/editor.main'], () => {
+        this.initMonaco();
+        this.subscription = this.templateService.templateChanged.subscribe(() => {
+          this.refreshContent();
+        });
       });
-    });
+    };
+
+    if (!(<any>window).require) {
+      let loaderScript = document.createElement('script');
+      loaderScript.type = 'text/javascript';
+      loaderScript.src = 'vs/loader.js';
+      loaderScript.addEventListener('load', onAmdLoaderLoad);
+      document.body.appendChild(loaderScript);
+    } else {
+      onAmdLoaderLoad();
+    }
   }
 
   ngOnDestroy() {
-    this.store.dispatch( { type: UPDATE, payload: this.editor.getPosition() });
+    this.store.dispatch({ type: UPDATE, payload: this.editor.getPosition() });
     this.subscription.unsubscribe();
     this.templateService.loadTemplate(this.editor.getValue());
   }
