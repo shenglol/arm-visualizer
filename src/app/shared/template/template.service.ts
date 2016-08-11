@@ -59,7 +59,9 @@ export class TemplateService {
     let templateErrors = this.engine.errorManager.templateErrors;
     let expressionErrors = this.engine.errorManager.expressionErrors;
 
-    console.clear();
+    if (templateErrors.length > 0 || Object.keys(expressionErrors).length > 0) {
+      console.clear();
+    }
 
     if (templateErrors.length > 0) {
       console.log('Template Errors:');

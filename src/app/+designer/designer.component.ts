@@ -23,8 +23,11 @@ export class DesignerComponent implements OnInit {
     let loadIndex = this.router.url.indexOf('?load=');
     if (loadIndex > -1) {
       let url: string = this.router.url.substr(loadIndex + 6);
-      console.log(url);
       this.templateService.loadTemplateFromUrl(url);
+    }
+
+    if (this.router.url !== '/designer') {
+      this.router.navigateByUrl('/designer');
     }
   }
 }

@@ -31,7 +31,7 @@ export class DiagramService {
     ].join('');
 
     let svgBackground = [
-      'data:image/svg+xml;utf8,',
+      'data:image/svg+xml;,',
       '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="280" height="90" viewBox="0 0 280 90">',
       rect,
       icon,
@@ -39,7 +39,7 @@ export class DiagramService {
       '</svg>'
     ].join('');
 
-    return svgBackground;
+    return encodeURI(svgBackground);
   }
 
   private handleError(error: any) {
@@ -47,10 +47,11 @@ export class DiagramService {
   }
 
   private converToSingleLine(iconContent: string): string {
-    iconContent = iconContent.replace(/>(\r\n|\n|\r)/gm, '>');
-    iconContent = iconContent.replace(/(\r\n|\n|\r)/gm, ' ');
-    iconContent = iconContent.replace(/\t+/g, ' ');
-    iconContent = iconContent.replace(/ +/g, ' ');
+    iconContent = iconContent
+      .replace(/>(\r\n|\n|\r)/gm, '>')
+      .replace(/(\r\n|\n|\r)/gm, ' ')
+      .replace(/\t+/g, ' ')
+      .replace(/ +/g, ' ');
 
     return iconContent;
   }

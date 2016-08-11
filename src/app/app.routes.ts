@@ -4,8 +4,8 @@ import { DesignerRoutes } from './+designer/index';
 import { EditorRoutes } from './+editor/index';
 
 const routes: RouterConfig = [
-  ...DesignerRoutes,
-  ...EditorRoutes
+  ...EditorRoutes,
+  ...DesignerRoutes
 ];
 
 export const APP_ROUTER_PROVIDERS = [
