@@ -1,5 +1,7 @@
-import { Component, onInit, onDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Store } from '@ngrx/store';
 
+import { UPDATE, CursorPosition, EditorState } from '../shared/index';
 import { TemplateService } from '../../shared/index';
 
 declare const __moduleName: string;
@@ -18,7 +20,9 @@ export class MonacoComponent {
   private subscription: any;
   private editor: any;
 
-  constructor(private templateService: TemplateService) { }
+  constructor(
+    private store: Store<EditorState>,
+    private templateService: TemplateService) { }
 
   ngOnInit() {
     (<any>window).require(['vs/editor/editor.main'], () => {
@@ -30,6 +34,7 @@ export class MonacoComponent {
   }
 
   ngOnDestroy() {
+    this.store.dispatch( { type: UPDATE, payload: this.editor.getPosition() });
     this.subscription.unsubscribe();
     this.templateService.loadTemplate(this.editor.getValue());
   }
@@ -40,6 +45,24 @@ export class MonacoComponent {
       value: this.templateService.templateData,
       language: 'json'
     });
+
+    this.editor.focus();
+
+    this.store.select('cursorPosition')
+      .subscribe(position => {
+        this.editor.setPosition(position);
+        this.editor.revealPositionInCenter(position);
+      });
+
+    window.onresize = () => {
+      if (this.editor) {
+        let windowWidth = window.innerWidth;
+        let sidebarWidth = document.getElementById('sidebar-container').clientWidth;
+        let editorWidth = (windowWidth - sidebarWidth).toString() + 'px';
+        (<HTMLDivElement>this.editorElementRef.nativeElement).style.width = editorWidth;
+        this.editor.layout();
+      }
+    };
   }
 
   private refreshContent() {
