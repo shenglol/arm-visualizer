@@ -11,7 +11,7 @@ body {
 .toast-top-full-width {
   top: auto;
   right: 0;
-  font-size: 12px;
+  font-size: .9rem;
   width: 100%;
 }
 
@@ -52,7 +52,7 @@ body {
 
 .toast-content {
   width: 100%;
-  color: #f3f3f3;
+  color: #eee;
 }
 
 .toaster {
@@ -65,7 +65,7 @@ body {
 }
 
 .toaster-message {
-  margin: .5rem 0;
+  margin: .6rem 0;
 }
 
 .toaster-btn {
