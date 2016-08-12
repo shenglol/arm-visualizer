@@ -1,5 +1,5 @@
 export * from './constants/resource-type-maps';
-
+export * from './toasts/index';
 export * from './template/index';
 
 export * from './menu-bar/index';

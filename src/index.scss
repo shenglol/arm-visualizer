@@ -7,3 +7,71 @@ html {
 body {
   height: 100%;
 }
+
+.toast-top-full-width {
+  top: auto;
+  right: 0;
+  width: 100%;
+}
+
+#toast-container.toast-top-full-width > div, #toast-container.toast-bottom-full-width > div {
+  width: 70%;
+  margin: auto;
+}
+
+#toast-container > div {
+  margin: 0 0 6px;
+  padding: 0 0 0 1rem;
+  width: 300px;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  -webkit-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.35);
+  box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.35);
+  color: #ffffff;
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80);
+}
+
+#toast-container > :hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.35);
+  box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.35);
+}
+
+.toast-info {
+  background-color: #2c2c2c;
+}
+
+.toast-content {
+    display: inline-block;
+    width: 100%;
+    color: #f3f3f3;
+}
+
+.toaster {
+  display: flex;
+  justify-content: space-between;
+}
+
+.toaster-icon {
+  display: none;
+}
+
+.toaster-message {
+  margin: .5rem 0;
+}
+
+.toaster-btn {
+  border-width: 0;
+  background-color: #1382ce;
+}
+
+.toaster-btn:hover {
+  background-color: #006bb3;
+}
