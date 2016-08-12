@@ -252,6 +252,7 @@ SystemJS.config({
     '@ng-bootstrap/ng-bootstrap': 'npm:@ng-bootstrap/ng-bootstrap@1.0.0-alpha.1',
     '@ngrx/core': 'npm:@ngrx/core@1.0.1',
     '@ngrx/store': 'npm:@ngrx/store@2.0.1',
+    'angular2-toaster': 'npm:angular2-toaster@0.3.6-rc.4',
     'arm-visualizer-engine': 'npm:arm-visualizer-engine@0.0.9',
     'buffer': 'github:jspm/nodelibs-buffer@0.2.0-alpha',
     'es6-promise': 'npm:es6-promise@3.2.1',
@@ -285,6 +286,16 @@ SystemJS.config({
         'base64-js': 'npm:base64-js@1.1.2',
         'isarray': 'npm:isarray@1.0.0',
         'ieee754': 'npm:ieee754@1.1.6'
+      }
+    },
+    'npm:angular2-toaster@0.3.6-rc.4': {
+      'map': {
+        'rxjs': 'npm:rxjs@5.0.0-beta.6',
+        '@angular/compiler': 'npm:@angular/compiler@2.0.0-rc.4',
+        '@angular/common': 'npm:@angular/common@2.0.0-rc.4',
+        '@angular/core': 'npm:@angular/core@2.0.0-rc.4',
+        '@angular/platform-browser': 'npm:@angular/platform-browser@2.0.0-rc.4',
+        '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic@2.0.0-rc.4'
       }
     }
   }

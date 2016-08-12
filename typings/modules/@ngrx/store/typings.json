@@ -1,8 +1,8 @@
 {
   "resolution": "main",
   "tree": {
-    "src": "C:\\Users\\t-shli\\Repos\\arm-visualizer\\jspm_packages\\npm\\@ngrx\\store@2.0.1\\index.d.ts",
+    "src": "c:\\Users\\sheng\\Repos\\arm-visualizer\\jspm_packages\\npm\\@ngrx\\store@2.0.1\\index.d.ts",
     "raw": "file:jspm_packages/npm/@ngrx/store@2.0.1/index.d.ts",
-    "typings": "C:\\Users\\t-shli\\Repos\\arm-visualizer\\jspm_packages\\npm\\@ngrx\\store@2.0.1\\index.d.ts"
+    "typings": "c:\\Users\\sheng\\Repos\\arm-visualizer\\jspm_packages\\npm\\@ngrx\\store@2.0.1\\index.d.ts"
   }
 }

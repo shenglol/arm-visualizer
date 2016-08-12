@@ -55,6 +55,7 @@
       "@angular/http": "npm:@angular/http@2.0.0-rc.4",
       "@ng-bootstrap/ng-bootstrap": "npm:@ng-bootstrap/ng-bootstrap@^1.0.0-alpha.0",
       "@ngrx/store": "npm:@ngrx/store@^2.0.1",
+      "angular2-toaster": "npm:angular2-toaster@^0.3.6-rc.4",
       "arm-visualizer-engine": "npm:arm-visualizer-engine@^0.0.9",
       "es6-promise": "npm:es6-promise@^3.0.2",
       "file-saver": "npm:file-saver@^1.3.2",
@@ -79,7 +80,7 @@
     "peerDependencies": {
       "@angular/common": "npm:@angular/common@2.0.0-rc.4",
       "@angular/compiler": "npm:@angular/compiler@2.0.0-rc.4",
-      "@angular/core": "npm:@angular/core@^2.0.0-rc.4",
+      "@angular/core": "npm:@angular/core@2.0.0-rc.4",
       "@angular/platform-browser": "npm:@angular/platform-browser@2.0.0-rc.4",
       "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@2.0.0-rc.4",
       "@ngrx/core": "npm:@ngrx/core@^1.0.0",

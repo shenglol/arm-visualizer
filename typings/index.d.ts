@@ -8,3 +8,4 @@
 /// <reference path="modules/@angular/router/index.d.ts" />
 /// <reference path="modules/@ng-bootstrap/ng-bootstrap/index.d.ts" />
 /// <reference path="modules/@ngrx/store/index.d.ts" />
+/// <reference path="modules/angular2-toaster/angular2-toaster/index.d.ts" />
