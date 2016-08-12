@@ -22,12 +22,19 @@ declare const __moduleName: string;
 export class AppComponent {
   private toasterconfig: ToasterConfig = new ToasterConfig({
     positionClass: 'toast-top-full-width',
+    newestOnTop: true,
     timeout: 0
   });
 
   constructor(private toasterService: ToasterService) { }
 
   ngAfterViewInit() {
-    this.toasterService.pop(FIREFOX_ISSUE_TOAST);
+    // if (this.isFirefox()) {
+      this.toasterService.pop(FIREFOX_ISSUE_TOAST);
+    // }
+  }
+
+  private isFirefox(): boolean {
+    return navigator.userAgent.indexOf('Firefox') !== -1;
   }
 }

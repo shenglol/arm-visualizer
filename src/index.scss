@@ -11,6 +11,7 @@ body {
 .toast-top-full-width {
   top: auto;
   right: 0;
+  font-size: 12px;
   width: 100%;
 }
 
@@ -20,7 +21,7 @@ body {
 }
 
 #toast-container > div {
-  margin: 0 0 6px;
+  margin: 0 0 0 0;
   padding: 0 0 0 1rem;
   width: 300px;
   -moz-border-radius: 0;
@@ -46,12 +47,12 @@ body {
 
 .toast-info {
   background-color: #2c2c2c;
+  padding: 0;
 }
 
 .toast-content {
-    display: inline-block;
-    width: 100%;
-    color: #f3f3f3;
+  width: 100%;
+  color: #f3f3f3;
 }
 
 .toaster {
@@ -70,6 +71,8 @@ body {
 .toaster-btn {
   border-width: 0;
   background-color: #1382ce;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .toaster-btn:hover {
