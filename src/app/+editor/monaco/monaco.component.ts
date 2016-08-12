@@ -46,9 +46,10 @@ export class MonacoComponent {
   }
 
   ngOnDestroy() {
-    this.store.dispatch({ type: UPDATE, payload: this.editor.getPosition() });
     this.subscription.unsubscribe();
     this.templateService.loadTemplate(this.editor.getValue());
+    this.store.dispatch({ type: UPDATE, payload: this.editor.getPosition() });
+    this.editor.dispose();
   }
 
   private initMonaco() {
