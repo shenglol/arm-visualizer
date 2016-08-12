@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ToasterContainerComponent, ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
 
-import { FIREFOX_ISSUE_TOAST } from './shared/index';
+import { FEEDBACK_TOAST, FIREFOX_ISSUE_TOAST } from './shared/index';
 import { MenuBarComponent, SidebarComponent, WorkbenchComponent } from './shared/index';
 
 declare const __moduleName: string;
@@ -29,9 +29,15 @@ export class AppComponent {
   constructor(private toasterService: ToasterService) { }
 
   ngAfterViewInit() {
-    // if (this.isFirefox()) {
+    if (this.isFirefox()) {
       this.toasterService.pop(FIREFOX_ISSUE_TOAST);
-    // }
+    }
+
+    if (!localStorage.getItem('feedback')) {
+      setTimeout(() => {
+        this.toasterService.pop(FEEDBACK_TOAST);
+      }, 20000);
+    }
   }
 
   private isFirefox(): boolean {
