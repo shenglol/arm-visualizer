@@ -253,7 +253,7 @@ SystemJS.config({
     '@ngrx/core': 'npm:@ngrx/core@1.0.1',
     '@ngrx/store': 'npm:@ngrx/store@2.0.1',
     'angular2-toaster': 'npm:angular2-toaster@0.3.6-rc.4',
-    'arm-visualizer-engine': 'npm:arm-visualizer-engine@0.0.9',
+    'arm-visualizer-engine': 'npm:arm-visualizer-engine@0.0.11',
     'buffer': 'github:jspm/nodelibs-buffer@0.2.0-alpha',
     'es6-promise': 'npm:es6-promise@3.2.1',
     'es6-shim': 'npm:es6-shim@0.35.1',
