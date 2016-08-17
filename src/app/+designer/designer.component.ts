@@ -22,7 +22,7 @@ export class DesignerComponent implements OnInit {
   ngOnInit() {
     let loadIndex = this.router.url.indexOf('?load=');
     if (loadIndex > -1) {
-      let url: string = this.router.url.substr(loadIndex + 6);
+      let url: string = decodeURIComponent(this.router.url.substr(loadIndex + 6));
       this.templateService.loadTemplateFromUrl(url);
     }
 
