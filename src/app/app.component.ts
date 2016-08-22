@@ -29,18 +29,10 @@ export class AppComponent {
   constructor(private toasterService: ToasterService) { }
 
   ngAfterViewInit() {
-    if (this.isFirefox()) {
-      this.toasterService.pop(FIREFOX_ISSUE_TOAST);
-    }
-
     if (!localStorage.getItem('feedback')) {
       setTimeout(() => {
         this.toasterService.pop(FEEDBACK_TOAST);
       }, 20000);
     }
-  }
-
-  private isFirefox(): boolean {
-    return navigator.userAgent.indexOf('Firefox') !== -1;
   }
 }

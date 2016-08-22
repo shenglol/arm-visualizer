@@ -31,15 +31,14 @@ export class DiagramService {
     ].join('');
 
     let svgBackground = [
-      'data:image/svg+xml;,',
-      '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="280" height="90" viewBox="0 0 280 90">',
+      '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="280" height="90">',
       rect,
       icon,
       type,
       '</svg>'
     ].join('');
 
-    return encodeURI(svgBackground);
+    return encodeURI('data:image/svg+xml;base64,' + btoa(svgBackground));
   }
 
   private handleError(error: any) {

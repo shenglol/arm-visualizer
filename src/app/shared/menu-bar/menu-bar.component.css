@@ -5,7 +5,8 @@
 
 .navbar-brand {
   margin-right: 5rem;
-  font-family: 'Segoe UI Semibold';
+  font-family: 'Segoe UI';
+  font-weight: 600;
 }
 
 .nav-item {
