@@ -84,7 +84,6 @@ export class DiagramService {
       '</text>',
       '</svg>'
     ].join(''));
-    console.log(backgroundURI);
 
     return encodeURI(backgroundURI);
   }

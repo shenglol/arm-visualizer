@@ -1,4 +1,3 @@
-export * from './constants/resource-type-maps';
 export * from './toasts/index';
 export * from './template/index';
 
