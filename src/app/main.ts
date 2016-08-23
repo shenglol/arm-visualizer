@@ -6,7 +6,7 @@ import {production} from '@system-env';
 
 import { APP_ROUTER_PROVIDERS } from './app.routes';
 import { AppComponent } from './app.component';
-import { TemplateService } from './shared/index';
+import { ResourceService, TemplateService } from './shared/index';
 import { CursorPositionReducer } from './+editor/index';
 
 if (production) {
@@ -16,6 +16,7 @@ if (production) {
 bootstrap(AppComponent, [
   APP_ROUTER_PROVIDERS,
   HTTP_PROVIDERS,
+  ResourceService,
   TemplateService,
   provideStore({ cursorPosition: CursorPositionReducer })
 ]);

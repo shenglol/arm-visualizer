@@ -4,6 +4,8 @@
 }
 
 .navbar-brand {
+  margin-top: -.08rem;
+  margin-bottom: .08rem;
   margin-right: 5rem;
   font-family: 'Segoe UI';
   font-weight: 600;

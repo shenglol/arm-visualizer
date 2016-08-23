@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { DiagramService } from './diagram.service';
+import { DiagramNode, DiagramService } from './shared/index';
 import { TemplateService } from '../../shared/index';
 
 declare const __moduleName: string;
@@ -19,12 +19,11 @@ export class DiagramComponent implements OnInit, OnDestroy {
 
   constructor(
     private templateService: TemplateService,
-    private designerService: DiagramService) { }
+    private diagramService: DiagramService) { }
 
   ngOnInit() {
-    this.subscription = this.templateService.templateChanged.subscribe(() => {
-      this.refreshContent();
-    });
+    this.subscription = this.templateService.templateChanged
+      .subscribe(() => this.refreshContent());
 
     this.refreshContent();
   }
@@ -37,51 +36,14 @@ export class DiagramComponent implements OnInit, OnDestroy {
   }
 
   private refreshContent() {
-    let nodes: any[] = [];
-    let edges: any[] = [];
-
-    for (let resource of this.templateService.getAllResources()) {
-      let sourceId = resource.type + '/' + resource.name;
-      let label = this.templateService.resolveExpression(resource.name);
-
-      this.designerService.getNodeBackground(resource.type).subscribe(
-        background => {
-          nodes.push({
-            group: 'nodes',
-            data: {
-              id: sourceId,
-              label: label.length > 20 ? label.substring(0, 17) + '...' : label,
-              background: background
-            }
-          });
-
-          for (let dependency of this.templateService.getDependencies(resource)) {
-            let targetId = dependency.type + '/' + dependency.name;
-
-            edges.push({
-              group: 'edges',
-              data: {
-                source: sourceId,
-                target: targetId
-              }
-            });
-          }
-
-          if (nodes.length === this.templateService.getAllResources().length) {
-            this.drawDiagram(nodes, edges);
-            this.templateService.reportErrors();
-          }
-        },
-        error => {
-          // todo: real error handling
-          console.log(error);
-        }
-      );
+    if (!this.cy) {
+      this.initCytoscape();
     }
 
+    this.drawDiagram();
   }
 
-  private drawDiagram(nodes: any[], edges: any[]) {
+  private initCytoscape() {
     this.cy = cytoscape({
       container: document.getElementById('cy'),
 
@@ -95,14 +57,14 @@ export class DiagramComponent implements OnInit, OnDestroy {
           style: {
             'content': 'data(label)',
             'shape': 'rectangle',
-            'background-image': 'data(background)',
+            'background-image': 'data(backgroundURI)',
             'background-opacity': '0',
             'text-valign': 'top',
             'text-halign': 'right',
             'text-margin-x': -195,
             'text-margin-y': 45,
             'font-family': "'Segoe UI Semibold'",
-            'font-size': 20,
+            'font-size': '20',
             'font-weight': 'bold',
             'color': '#5c5c5c',
             'width': 280,
@@ -123,18 +85,31 @@ export class DiagramComponent implements OnInit, OnDestroy {
       ]
     });
 
-    this.cy.add(nodes);
-    this.cy.add(edges);
-
     this.cy.minZoom(.2);
     this.cy.maxZoom(2);
+  }
 
-    this.cy.layout({
-      name: 'breadthfirst',
-      directed: true,
-      padding: 70,
-      spacingFactor: 1.1,
-      avoidOverlap: true
-    });
+
+  private drawDiagram() {
+    this.diagramService.createNodes(this.templateService.getAllResources())
+      .subscribe(
+        nodes => {
+          let edges = this.diagramService.createEdges(nodes);
+
+          this.cy.elements().remove();
+
+          this.cy.add(nodes);
+          this.cy.add(edges);
+
+          this.cy.layout({
+            name: 'breadthfirst',
+            directed: true,
+            padding: 70,
+            spacingFactor: 1.1,
+            avoidOverlap: true
+          });
+        },
+        // TODO: real error handling
+        error => console.log(error));
   }
 }
