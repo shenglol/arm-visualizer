@@ -45,12 +45,8 @@ export class DiagramComponent implements OnInit, OnDestroy {
 
   private initCytoscape() {
     this.cy = cytoscape({
+      // very commonly used options
       container: document.getElementById('cy'),
-
-      boxSelectionEnabled: false,
-      autounselectify: false,
-      wheelSensitivity: .2,
-
       style: [
         {
           selector: 'node',
@@ -71,7 +67,6 @@ export class DiagramComponent implements OnInit, OnDestroy {
             'height': 90
           }
         },
-
         {
           selector: 'edge',
           style: {
@@ -82,11 +77,16 @@ export class DiagramComponent implements OnInit, OnDestroy {
             'curve-style': 'bezier'
           }
         }
-      ]
-    });
+      ],
 
-    this.cy.minZoom(.2);
-    this.cy.maxZoom(2);
+      // interaction options
+      minZoom: .2,
+      maxZoom: 2,
+
+      // rendering options
+      wheelSensitivity: .1,
+
+    });
   }
 
 
