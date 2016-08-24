@@ -32,22 +32,14 @@ export class MonacoComponent {
     let onAmdLoaderLoad = () => {
       (<any>window).require(['vs/editor/editor.main'], () => {
         this.initMonaco();
-        this.templateSub = this.templateService.templateChanged.subscribe(() => {
-          this.refreshContent();
-        });
-        this.navigationSub = this.route.params.subscribe(params => {
-          let id = +params['resourceId'];
-          if (id) {
-            let resource = this.templateService.getAllResources()[id];
-            let resourceText = JSON.stringify(resource, null, 2).split('\n').map(line => line.trim()).join('\n');
-            let sourceText = this.editor.getValue().split('\n').map(line => line.trim()).join('\n');
-            let pos = sourceText.indexOf(resourceText);
-            let lineCount = sourceText.substr(0, pos).split('\n').length;
-            console.log(lineCount);
-            this.editor.revealLineInCenter(lineCount + 10);
-            this.editor.setPosition({ lineNumber: lineCount + 1, column: 0 });
-          }
-        });
+
+        this.setContent();
+
+        this.navigationSub = this.route.params
+          .subscribe(params => this.setPosition(+params['resourceId']));
+        this.templateSub = this.templateService.templateChanged
+          .subscribe(() => this.setContent());
+
       });
     };
 
@@ -66,7 +58,7 @@ export class MonacoComponent {
     this.templateSub.unsubscribe();
     this.navigationSub.unsubscribe();
     this.templateService.loadTemplate(this.editor.getValue());
-    this.store.dispatch({ type: UPDATE, payload: this.editor.getPosition() });
+    this.savePosition();
     this.editor.dispose();
   }
 
@@ -98,7 +90,46 @@ export class MonacoComponent {
     };
   }
 
-  private refreshContent() {
+  private setContent() {
     this.editor.setValue(this.templateService.templateData);
+  }
+
+  private setPosition(resourceId?: number) {
+    if (typeof resourceId === 'number' && !isNaN(resourceId)) {
+      this.revealResourcePosition(resourceId);
+    } else {
+      this.restorePosition();
+    }
+  }
+
+  private revealResourcePosition(resourceId: number) {
+    let resource = this.templateService.getAllResources()[resourceId];
+    let resourceString = JSON.stringify(resource, null, 2);
+
+    let target = resourceString.split('\n').map(line => line.trim()).join('\n');
+    let source = this.editor.getValue().split('\n').map(line => line.trim()).join('\n');
+
+    let pos = source.indexOf(target);
+    let lineNumber = source.substr(0, pos).split('\n').length + 1;
+
+    this.editor.revealLineInCenter(lineNumber + 10);
+    this.editor.setPosition({ lineNumber: lineNumber, column: 0 });
+  }
+
+  private savePosition() {
+    this.store.dispatch({ type: UPDATE, payload: this.editor.getPosition() });
+  }
+
+  private restorePosition() {
+    this.store.select('cursorPosition')
+      .subscribe(position => {
+        let revealPosition = {
+          lineNumber: position.lineNumber + 10,
+          column: position.column
+        };
+
+        this.editor.revealPositionInCenter(revealPosition);
+        this.editor.setPosition(position);
+      });
   }
 }
