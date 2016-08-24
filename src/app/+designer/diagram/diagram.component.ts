@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DiagramNode, DiagramService } from './shared/index';
 import { TemplateService } from '../../shared/index';
@@ -18,6 +19,7 @@ export class DiagramComponent implements OnInit, OnDestroy {
   private cy: any;
 
   constructor(
+    private router: Router,
     private templateService: TemplateService,
     private diagramService: DiagramService) { }
 
@@ -76,6 +78,13 @@ export class DiagramComponent implements OnInit, OnDestroy {
             'target-arrow-color': '#cccedb',
             'curve-style': 'bezier'
           }
+        },
+        {
+          selector: ':active',
+          style: {
+            'overlay-color': '#563d7c',
+            'overlay-opacity': .1
+          }
         }
       ],
 
@@ -87,29 +96,46 @@ export class DiagramComponent implements OnInit, OnDestroy {
       wheelSensitivity: .1,
 
     });
+
+    this.cy.on('tap', 'node', event => this.onNodeTap(event));
+    this.cy.on('mouseover', 'node', event => this.onNodeMouseover(event));
+    this.cy.on('mouseout', 'node', event => this.onNodeMouseout(event));
   }
 
 
   private drawDiagram() {
     this.diagramService.createNodes(this.templateService.getAllResources())
       .subscribe(
-        nodes => {
-          let edges = this.diagramService.createEdges(nodes);
+      nodes => {
+        let edges = this.diagramService.createEdges(nodes);
 
-          this.cy.elements().remove();
+        this.cy.elements().remove();
 
-          this.cy.add(nodes);
-          this.cy.add(edges);
+        this.cy.add(nodes);
+        this.cy.add(edges);
 
-          this.cy.layout({
-            name: 'breadthfirst',
-            directed: true,
-            padding: 70,
-            spacingFactor: 1.1,
-            avoidOverlap: true
-          });
-        },
-        // TODO: real error handling
-        error => console.log(error));
+        this.cy.layout({
+          name: 'breadthfirst',
+          directed: true,
+          padding: 70,
+          spacingFactor: 1.1,
+          avoidOverlap: true
+        });
+      },
+      // TODO: real error handling
+      error => console.log(error));
+  }
+
+  private onNodeTap(event: any) {
+    let node = event.cyTarget;
+    this.router.navigate(['/editor', node.id()]);
+  }
+
+  private onNodeMouseover(event: any) {
+    document.getElementById('cy').style.cursor = 'pointer';
+  }
+
+  private onNodeMouseout(event: any) {
+    document.getElementById('cy').style.cursor = 'default';
   }
 }

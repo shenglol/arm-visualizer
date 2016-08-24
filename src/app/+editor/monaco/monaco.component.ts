@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import * as _ from 'lodash';
 
 import { UPDATE, CursorPosition, EditorState } from '../shared/index';
 import { TemplateService } from '../../shared/index';
@@ -17,10 +19,12 @@ declare const require: any;
 export class MonacoComponent {
   @ViewChild('editor') editorElementRef: ElementRef;
 
-  private subscription: any;
+  private templateSub: any;
+  private navigationSub: any;
   private editor: any;
 
   constructor(
+    private route: ActivatedRoute,
     private store: Store<EditorState>,
     private templateService: TemplateService) { }
 
@@ -28,9 +32,14 @@ export class MonacoComponent {
     let onAmdLoaderLoad = () => {
       (<any>window).require(['vs/editor/editor.main'], () => {
         this.initMonaco();
-        this.subscription = this.templateService.templateChanged.subscribe(() => {
-          this.refreshContent();
-        });
+
+        this.setContent();
+
+        this.navigationSub = this.route.params
+          .subscribe(params => this.setPosition(+params['resourceId']));
+        this.templateSub = this.templateService.templateChanged
+          .subscribe(() => this.setContent());
+
       });
     };
 
@@ -46,9 +55,10 @@ export class MonacoComponent {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.templateSub.unsubscribe();
+    this.navigationSub.unsubscribe();
     this.templateService.loadTemplate(this.editor.getValue());
-    this.store.dispatch({ type: UPDATE, payload: this.editor.getPosition() });
+    this.savePosition();
     this.editor.dispose();
   }
 
@@ -63,8 +73,10 @@ export class MonacoComponent {
 
     this.store.select('cursorPosition')
       .subscribe(position => {
+        let revealPosition = _.clone(position);
+        revealPosition.lineNumber += 10;
         this.editor.setPosition(position);
-        this.editor.revealPositionInCenter(position);
+        this.editor.revealPositionInCenter(revealPosition);
       });
 
     window.onresize = () => {
@@ -78,7 +90,46 @@ export class MonacoComponent {
     };
   }
 
-  private refreshContent() {
+  private setContent() {
     this.editor.setValue(this.templateService.templateData);
+  }
+
+  private setPosition(resourceId?: number) {
+    if (typeof resourceId === 'number' && !isNaN(resourceId)) {
+      this.revealResourcePosition(resourceId);
+    } else {
+      this.restorePosition();
+    }
+  }
+
+  private revealResourcePosition(resourceId: number) {
+    let resource = this.templateService.getAllResources()[resourceId];
+    let resourceString = JSON.stringify(resource, null, 2);
+
+    let target = resourceString.split('\n').map(line => line.trim()).join('\n');
+    let source = this.editor.getValue().split('\n').map(line => line.trim()).join('\n');
+
+    let pos = source.indexOf(target);
+    let lineNumber = source.substr(0, pos).split('\n').length + 1;
+
+    this.editor.revealLineInCenter(lineNumber + 10);
+    this.editor.setPosition({ lineNumber: lineNumber, column: 0 });
+  }
+
+  private savePosition() {
+    this.store.dispatch({ type: UPDATE, payload: this.editor.getPosition() });
+  }
+
+  private restorePosition() {
+    this.store.select('cursorPosition')
+      .subscribe(position => {
+        let revealPosition = {
+          lineNumber: position.lineNumber + 10,
+          column: position.column
+        };
+
+        this.editor.revealPositionInCenter(revealPosition);
+        this.editor.setPosition(position);
+      });
   }
 }
