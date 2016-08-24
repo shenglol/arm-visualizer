@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import * as _ from 'lodash';
 
 import { UPDATE, CursorPosition, EditorState } from '../shared/index';
 import { TemplateService } from '../../shared/index';
@@ -17,10 +19,12 @@ declare const require: any;
 export class MonacoComponent {
   @ViewChild('editor') editorElementRef: ElementRef;
 
-  private subscription: any;
+  private templateSub: any;
+  private navigationSub: any;
   private editor: any;
 
   constructor(
+    private route: ActivatedRoute,
     private store: Store<EditorState>,
     private templateService: TemplateService) { }
 
@@ -28,8 +32,21 @@ export class MonacoComponent {
     let onAmdLoaderLoad = () => {
       (<any>window).require(['vs/editor/editor.main'], () => {
         this.initMonaco();
-        this.subscription = this.templateService.templateChanged.subscribe(() => {
+        this.templateSub = this.templateService.templateChanged.subscribe(() => {
           this.refreshContent();
+        });
+        this.navigationSub = this.route.params.subscribe(params => {
+          let id = +params['resourceId'];
+          if (id) {
+            let resource = this.templateService.getAllResources()[id];
+            let resourceText = JSON.stringify(resource, null, 2).split('\n').map(line => line.trim()).join('\n');
+            let sourceText = this.editor.getValue().split('\n').map(line => line.trim()).join('\n');
+            let pos = sourceText.indexOf(resourceText);
+            let lineCount = sourceText.substr(0, pos).split('\n').length;
+            console.log(lineCount);
+            this.editor.revealLineInCenter(lineCount + 10);
+            this.editor.setPosition({ lineNumber: lineCount + 1, column: 0 });
+          }
         });
       });
     };
@@ -46,7 +63,8 @@ export class MonacoComponent {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.templateSub.unsubscribe();
+    this.navigationSub.unsubscribe();
     this.templateService.loadTemplate(this.editor.getValue());
     this.store.dispatch({ type: UPDATE, payload: this.editor.getPosition() });
     this.editor.dispose();
@@ -63,8 +81,10 @@ export class MonacoComponent {
 
     this.store.select('cursorPosition')
       .subscribe(position => {
+        let revealPosition = _.clone(position);
+        revealPosition.lineNumber += 10;
         this.editor.setPosition(position);
-        this.editor.revealPositionInCenter(position);
+        this.editor.revealPositionInCenter(revealPosition);
       });
 
     window.onresize = () => {

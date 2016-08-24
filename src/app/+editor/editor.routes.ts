@@ -7,4 +7,8 @@ export const EditorRoutes: RouterConfig = [
     path: 'editor',
     component: EditorComponent
   },
+  {
+    path: 'editor/:resourceId',
+    component: EditorComponent
+  }
 ];
