@@ -33,10 +33,9 @@ export class MonacoComponent {
       (<any>window).require(['vs/editor/editor.main'], () => {
         this.initMonaco();
 
-        this.setContent();
-
         this.navigationSub = this.route.params
           .subscribe(params => this.setPosition(+params['resourceId']));
+
         this.templateSub = this.templateService.templateChanged
           .subscribe(() => this.setContent());
 
@@ -45,10 +44,9 @@ export class MonacoComponent {
 
     if (!(<any>window).require) {
       let loaderScript = document.createElement('script');
-      loaderScript.type = 'text/javascript';
       loaderScript.src = 'vs/loader.js';
-      loaderScript.addEventListener('load', onAmdLoaderLoad);
-      document.body.appendChild(loaderScript);
+      loaderScript.onload = onAmdLoaderLoad;
+      document.getElementsByTagName('head')[0].appendChild(loaderScript);
     } else {
       onAmdLoaderLoad();
     }
@@ -57,9 +55,8 @@ export class MonacoComponent {
   ngOnDestroy() {
     this.templateSub.unsubscribe();
     this.navigationSub.unsubscribe();
-    this.templateService.loadTemplate(this.editor.getValue());
-    this.savePosition();
-    this.editor.dispose();
+
+    this.destroyMonaco();
   }
 
   private initMonaco() {
@@ -69,25 +66,21 @@ export class MonacoComponent {
       language: 'json'
     });
 
-    this.editor.focus();
-
-    this.store.select('cursorPosition')
-      .subscribe(position => {
-        let revealPosition = _.clone(position);
-        revealPosition.lineNumber += 10;
-        this.editor.setPosition(position);
-        this.editor.revealPositionInCenter(revealPosition);
-      });
-
     window.onresize = () => {
-      if (this.editor) {
-        let windowWidth = window.innerWidth;
-        let sidebarWidth = document.getElementById('sidebar-container').clientWidth;
-        let editorWidth = (windowWidth - sidebarWidth).toString() + 'px';
-        (<HTMLDivElement>this.editorElementRef.nativeElement).style.width = editorWidth;
-        this.editor.layout();
-      }
+      let windowWidth = window.innerWidth;
+      let sidebarWidth = document.getElementById('sidebar-container').clientWidth;
+      let editorWidth = (windowWidth - sidebarWidth).toString() + 'px';
+      (<HTMLDivElement>this.editorElementRef.nativeElement).style.width = editorWidth;
+      this.editor.layout();
     };
+  }
+
+  private destroyMonaco() {
+    if (this.editor) {
+      this.templateService.loadTemplate(this.editor.getValue());
+      this.savePosition();
+      this.editor.destroy();
+    }
   }
 
   private setContent() {
@@ -100,6 +93,8 @@ export class MonacoComponent {
     } else {
       this.restorePosition();
     }
+
+    this.editor.focus();
   }
 
   private revealResourcePosition(resourceId: number) {

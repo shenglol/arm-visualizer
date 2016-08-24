@@ -24,25 +24,16 @@ export class DiagramComponent implements OnInit, OnDestroy {
     private diagramService: DiagramService) { }
 
   ngOnInit() {
-    this.subscription = this.templateService.templateChanged
-      .subscribe(() => this.refreshContent());
+    this.initCytoscape();
 
-    this.refreshContent();
+    this.subscription = this.templateService.templateChanged
+      .subscribe(() => this.drawDiagram());
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    if (this.cy) {
-      this.cy.destroy();
-    }
-  }
 
-  private refreshContent() {
-    if (!this.cy) {
-      this.initCytoscape();
-    }
-
-    this.drawDiagram();
+    this.destroyCytoscape();
   }
 
   private initCytoscape() {
@@ -100,8 +91,15 @@ export class DiagramComponent implements OnInit, OnDestroy {
     this.cy.on('tap', 'node', event => this.onNodeTap(event));
     this.cy.on('mouseover', 'node', event => this.onNodeMouseover(event));
     this.cy.on('mouseout', 'node', event => this.onNodeMouseout(event));
+
+    this.drawDiagram();
   }
 
+  private destroyCytoscape() {
+    if (this.cy) {
+      this.cy.destroy();
+    }
+  }
 
   private drawDiagram() {
     this.diagramService.createNodes(this.templateService.getAllResources())
