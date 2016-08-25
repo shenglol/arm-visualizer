@@ -1,9 +1,10 @@
 <div class="toaster">
   <div class="toaster-message">
-    Thank you for using ARMVIZ! Would you mind taking a 2-minute survey to help us improve this tool?
+    Thank you for using ARMVIZ! Do you mind taking short survey to help us improve this tool?
   </div>
     <div class="toaster-btns">
-    <button class="toaster-btn toaster-btn-yes" (click)="onYesButtonClick()">Yes</button>
-    <button class="toaster-btn toaster-btn-no">No thanks</button>
+    <button class="toaster-btn">Next time</button>
+    <button class="toaster-btn" (click)="onNeverButtonClick()">Never</button>
+    <button class="toaster-btn" (click)="onTakeSurveyButtonClick()">Take survey</button>
   </div>
 </div>

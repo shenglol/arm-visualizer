@@ -74,11 +74,12 @@ body {
 .toast-info {
   background-color: #2c2c2c;
   padding: 0;
+  height: 32px;
 }
 
 .toast-content {
   width: 100%;
-  color: #ededed;
+  color: #e1e1e1;
 }
 
 .toaster {
@@ -96,6 +97,7 @@ body {
 
 .toaster-btns {
   display: flex;
+  height: 32px;
 }
 
 .toaster-btn {
