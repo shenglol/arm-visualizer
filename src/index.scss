@@ -8,6 +8,32 @@ body {
   height: 100%;
 }
 
+#app-container {
+  height: 100%;
+  width: 100%;
+  background-color: #563d7c;
+}
+
+.indicator {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  text-align: center;
+}
+
+.indicator.app-indicator {
+  color: white;
+}
+
+.azure {
+  margin-top: -120px;
+  margin-left: -60px;
+  margin-bottom: -20px;
+}
+
 .toast-top-full-width {
   top: auto;
   right: 0;

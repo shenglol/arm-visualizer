@@ -19,6 +19,7 @@ declare const require: any;
 export class MonacoComponent {
   @ViewChild('editor') editorElementRef: ElementRef;
 
+  private editorLoaded = false;
   private templateSub: any;
   private navigationSub: any;
   private editor: any;
@@ -65,6 +66,8 @@ export class MonacoComponent {
       value: this.templateService.templateData,
       language: 'json'
     });
+
+    this.editorLoaded = true;
 
     window.onresize = () => {
       let windowWidth = window.innerWidth;
