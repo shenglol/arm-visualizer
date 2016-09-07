@@ -4,6 +4,9 @@
   /*display: none;*/
 }
 
+:host >>> .tree-view-node-data-container {
+  padding-left: 1rem;
+}
 
 #toolbox-container {
   width: 22rem;
