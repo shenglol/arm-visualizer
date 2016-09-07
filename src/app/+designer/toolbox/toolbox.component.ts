@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
-import { TreeViewNode, TreeViewComponent } from '../../shared/index';
-import { ToolboxItems } from './toolbox-items';
+import { TreeViewNodeData, AsyncTreeViewNodeData, TreeViewConfig, TreeViewComponent } from '../../shared/index';
+// import { ToolboxItems } from './toolbox-items';
 
 declare const __moduleName: string;
 
@@ -10,12 +11,50 @@ declare const __moduleName: string;
   selector: 'toolbox',
   templateUrl: 'toolbox.component.html',
   styleUrls: ['toolbox.component.css'],
-  directives: [TreeViewComponent],
-  providers: [ToolboxItems]
+  directives: [TreeViewComponent]
+  // providers: [ToolboxItems]
 })
 export class ToolboxComponent {
-  toolboxNodes: TreeViewNode[] = [];
-    constructor(private items: ToolboxItems) {
-      this.toolboxNodes = items.getGroups();
+  // toolboxNodes: Array<TreeViewNodeData | AsyncTreeViewNodeData>;
+  toolboxItems: any = [
+    {
+      label: 'root1',
+      children: [
+        {
+          label: 'child1'
+        }
+      ]
+    },
+    {
+      label: 'root2',
+      // getChildren: (parent: AsyncTreeViewNodeData) => { return Observable.fromArray([]); }
+      getChildren: this.test
+    },
+    {
+      label: 'root3'
     }
+  ];
+
+  config: TreeViewConfig = {
+    template: '{{node.data.label}}'
+  };
+
+  // constructor() {}
+  test(parent: AsyncTreeViewNodeData) {
+    return Observable.from([
+      {
+        label: 'haha'
+      },
+      {
+        label: 'haha'
+      },
+      {
+        label: 'haha'
+      },
+      {
+        label: 'haha'
+      },
+    ]);
+  }
+
 }
