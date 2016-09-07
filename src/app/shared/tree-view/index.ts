@@ -1,3 +1,3 @@
-export * from './tree-view';
-export * from './tree-view-event';
+export * from './shared/index';
+export * from './tree-view-node/index';
 export * from './tree-view.component';

@@ -18,11 +18,7 @@
     "label-position": true,
     "label-undefined": true,
     "max-line-length": [false, 140],
-    "member-ordering": [true,
-      "public-before-private",
-      "static-before-instance",
-      "variables-before-functions"
-    ],
+    "member-ordering": [true, { "order": "fields-first" }],
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [true,

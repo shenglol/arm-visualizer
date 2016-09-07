@@ -1,9 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { TreeViewNode } from './tree-view-node/index';
+import { TreeViewNodeData, AsyncTreeViewNodeData, TreeViewNode, TreeView, TreeViewConfig } from './shared/index';
 import { TreeViewNodeComponent } from './tree-view-node/index';
-import { TreeView } from './tree-view';
-import { TreeViewEvent, TREE_VIEW_EVENT_NAMES } from './tree-view-event';
 
 declare const __moduleName: string;
 
@@ -15,16 +13,15 @@ declare const __moduleName: string;
   providers: [TreeView]
 })
 export class TreeViewComponent {
-  @Input() set nodes(nodes: TreeViewNode[]) {
-    this.treeView.nodes = nodes;
+  @Input()
+  set data(value: (TreeViewNodeData | AsyncTreeViewNodeData)[]) {
+    this.treeView.data = value;
   }
 
-  @Output() nodeClick: EventEmitter<TreeViewEvent>;
-  @Output() nodeDbClick: EventEmitter<TreeViewEvent>;
+  @Input()
+  set config(value: TreeViewConfig) {
+    this.treeView.config = value;
+  }
 
-  constructor(private treeView: TreeView) {
-    for (let name of Object.keys(TREE_VIEW_EVENT_NAMES)) {
-      this[name] = treeView.events[name];
-    }
-  };
+  constructor(private treeView: TreeView) {}
 }
