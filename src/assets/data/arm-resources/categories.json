@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Compute"
+  },
+  {
+    "name": "Networking"
+  },
+  {
+    "name": "Storage"
+  },
+  {
+    "name": "Web + Mobile"
+  },
+  {
+    "name": "Database"
+  },
+  {
+    "name": "Intelligence + Analytics"
+  },
+  {
+    "name": "Internet of Things"
+  },
+  {
+    "name": "Enterprise Integration"
+  },
+  {
+    "name": "Security + Identity"
+  },
+  {
+    "name": "Developer Tools"
+  },
+  {
+    "name": "Monitoring + Management"
+  },
+  {
+    "name": "Intelligence"
+  },
+  {
+    "name": "Containers"
+  }
+]
