@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { TreeViewNodeData, AsyncTreeViewNodeData, TreeViewConfig, TreeViewComponent } from '../../shared/index';
-// import { ToolboxItems } from './toolbox-items';
+import { ToolboxCategory, ToolboxService } from './shared/index';
 
 declare const __moduleName: string;
 
@@ -11,50 +11,27 @@ declare const __moduleName: string;
   selector: 'toolbox',
   templateUrl: 'toolbox.component.html',
   styleUrls: ['toolbox.component.css'],
-  directives: [TreeViewComponent]
-  // providers: [ToolboxItems]
+  directives: [TreeViewComponent],
+  providers: [ToolboxService]
 })
-export class ToolboxComponent {
-  // toolboxNodes: Array<TreeViewNodeData | AsyncTreeViewNodeData>;
-  toolboxItems: any = [
-    {
-      label: 'root1',
-      children: [
-        {
-          label: 'child1'
-        }
-      ]
-    },
-    {
-      label: 'root2',
-      // getChildren: (parent: AsyncTreeViewNodeData) => { return Observable.fromArray([]); }
-      getChildren: this.test
-    },
-    {
-      label: 'root3'
-    }
-  ];
+export class ToolboxComponent implements OnInit {
+  private categories: ToolboxCategory[];
+  private config: TreeViewConfig;
+  private subscription: any;
 
-  config: TreeViewConfig = {
-    template: '{{node.data.label}}'
-  };
+  constructor(private toolboxService: ToolboxService) {}
 
-  // constructor() {}
-  test(parent: AsyncTreeViewNodeData) {
-    return Observable.from([
-      {
-        label: 'haha'
-      },
-      {
-        label: 'haha'
-      },
-      {
-        label: 'haha'
-      },
-      {
-        label: 'haha'
-      },
-    ]);
+  ngOnInit() {
+    this.subscription = this.toolboxService.getCategories()
+      .subscribe(categories => {
+        this.categories = categories;
+        this.config = {
+          template: '{{node.data.name}}'
+        };
+      });
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
