@@ -15,7 +15,7 @@ declare const __moduleName: string;
 export class TreeViewComponent {
   @Input()
   set data(value: (TreeViewNodeData | AsyncTreeViewNodeData)[]) {
-    this.treeView.data = value;
+    this.treeView.data = value || [];
   }
 
   @Input()
