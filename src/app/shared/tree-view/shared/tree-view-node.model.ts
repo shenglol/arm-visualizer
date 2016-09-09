@@ -3,16 +3,16 @@ import * as _ from 'lodash';
 
 import { TreeView } from './tree-view.model';
 
-interface TreeViewNodeVisualStatus {
+interface TreeViewNodeStatus {
   isExpanded?: boolean;
   isSelected?: boolean;
 }
 
-export interface TreeViewNodeData extends TreeViewNodeVisualStatus {
+export interface TreeViewNodeData extends TreeViewNodeStatus {
   children?: TreeViewNodeData[];
 }
 
-export interface AsyncTreeViewNodeData extends TreeViewNodeVisualStatus {
+export interface AsyncTreeViewNodeData extends TreeViewNodeStatus {
   getChildren: (parent: AsyncTreeViewNodeData)
     => Observable<(TreeViewNodeData | AsyncTreeViewNodeData)[]>;
 }
@@ -47,6 +47,10 @@ export class TreeViewNode {
   }
 
   get hasChildren(): boolean {
+    if (this.isAsync) {
+      return true;
+    }
+
     if (this.children) {
       return this.children.length > 0;
     }
@@ -55,7 +59,7 @@ export class TreeViewNode {
       return (<TreeViewNodeData>this.data).children.length > 0;
     }
 
-    return this.isAsync;
+    return false;
   }
 
   constructor(
