@@ -1,7 +1,6 @@
 :host {
-  width: 22rem;
+  width: 26rem;
   height: 100%;
-  /*display: none;*/
 }
 
 :host >>> .tree-view-node-data-container {
@@ -9,7 +8,7 @@
 }
 
 #toolbox-container {
-  width: 22rem;
+  width: 26rem;
   height: 100%;
   background-color: #f3f3f3;
 }
