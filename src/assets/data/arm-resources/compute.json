@@ -1,0 +1,27 @@
+[
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Compute/virtualMachines",
+    "name": "myVM"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "myVMExtension"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Compute/virtualMachinesScaleSets",
+    "name": "myVMScaleSets"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Compute/availabititySets",
+    "name": "myAvailabilitySet"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Compute/containerServices",
+    "name": "myContainerService"
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/publicIPAddresses",
+    "name": "myPublicIP"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/virtualNetworks",
+    "name": "myVN"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/loadBalancers",
+    "name": "myLoadBalancer"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/networkSecurityGroup",
+    "name": "myNSG"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/networkSecurityGroup",
+    "name": "myNSG"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/networkInterface",
+    "name": "myNetworkInterface"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/routeTables",
+    "name": "myRouteTable"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/trafficManagerProfiles",
+    "name": "myTMP"
+  },
+  {
+    "apiVersion": "",
+    "type": "Microsoft.Network/dnszones",
+    "name": "myDNSZone"
+  }
+]
