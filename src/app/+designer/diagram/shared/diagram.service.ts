@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
+import textWidth from 'text-width';
 
 import { Resource } from 'arm-visualizer-engine';
 import { ResourceService, TemplateService } from '../../../shared/index';
@@ -21,12 +22,17 @@ export class DiagramService {
 
       return this.http.get(iconUrl).map(res => {
         let resolvedName = this.templateService.resolveExpression(resource.name);
+        let width = Math.max(Math.round(textWidth(resolvedName, { family: 'Segoe UI Semibold', 'size': 30 })), 280);
+        let marginX = (width * -1 + 85);
+
         let displayTypeName = this.resourceService.getDisplayTypeName(resource);
-        let backgroundURI = this.createBackgroundURI(res.text(), displayTypeName);
+        let backgroundURI = this.createBackgroundURI(res.text(), width, displayTypeName);
 
         return this.createNode({
           id: index,
-          label: this.truncate(resolvedName, 18),
+          label: resolvedName,
+          labelWidth: width,
+          labelMarginX: marginX,
           backgroundURI: backgroundURI,
           resource: resource
         });
@@ -72,9 +78,9 @@ export class DiagramService {
     };
   }
 
-  private createBackgroundURI(iconSvgText: string, displayTypeName: string): string {
+  private createBackgroundURI(iconSvgText: string, width: number, displayTypeName: string): string {
     let backgroundURI = 'data:image/svg+xml;base64,' + btoa([
-      '<svg xmlns="http://www.w3.org/2000/svg" width="280px" height="90px" viewBox="0 0 280 90">',
+      '<svg xmlns="http://www.w3.org/2000/svg" width="', width, 'px" height="90px" viewBox="0 0 ', width, ' 90">',
       '<rect width="100%" height="100%" rx="2" ry="2" fill="#f3f3f3"></rect>',
       '<g transform="translate(20,20)">',
       this.convertToSingleLine(iconSvgText),
