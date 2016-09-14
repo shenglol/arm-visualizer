@@ -50,13 +50,13 @@ export class DiagramComponent implements OnInit, OnDestroy {
             'background-opacity': '0',
             'text-valign': 'top',
             'text-halign': 'right',
-            'text-margin-x': -195,
+            'text-margin-x': 'data(labelMarginX)',
             'text-margin-y': 45,
             'font-family': "'Segoe UI Semibold'",
             'font-size': '20',
             'font-weight': 'bold',
             'color': '#5c5c5c',
-            'width': 280,
+            'width': 'data(labelWidth)',
             'height': 90
           }
         },

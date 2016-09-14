@@ -9,7 +9,6 @@ SystemJS.config({
       'path': 'github:jspm/nodelibs-path@0.2.0-alpha',
       'fs': 'github:jspm/nodelibs-fs@0.2.0-alpha',
       'assert': 'github:jspm/nodelibs-assert@0.2.0-alpha',
-      'util': 'github:jspm/nodelibs-util@0.2.0-alpha',
       'stream': 'github:jspm/nodelibs-stream@0.2.0-alpha',
       'events': 'github:jspm/nodelibs-events@0.2.0-alpha'
     },
@@ -263,7 +262,9 @@ SystemJS.config({
     'process': 'github:jspm/nodelibs-process@0.2.0-alpha',
     'reflect-metadata': 'npm:reflect-metadata@0.1.3',
     'rxjs': 'npm:rxjs@5.0.0-beta.6',
+    'text-width': 'npm:text-width@1.2.0',
     'ts': 'github:frankwallis/plugin-typescript@4.0.16',
+    'util': 'github:jspm/nodelibs-util@0.2.0-alpha',
     'zone.js': 'npm:zone.js@0.6.12'
   },
   packages: {
@@ -297,6 +298,11 @@ SystemJS.config({
         '@angular/core': 'npm:@angular/core@2.0.0-rc.4',
         '@angular/platform-browser': 'npm:@angular/platform-browser@2.0.0-rc.4',
         '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic@2.0.0-rc.4'
+      }
+    },
+    'npm:text-width@1.2.0': {
+      'map': {
+        'xtend': 'npm:xtend@4.0.1'
       }
     }
   }
