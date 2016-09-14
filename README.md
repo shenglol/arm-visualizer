@@ -2,20 +2,15 @@
 
 **This is a yet unreleased version of ArmViz 2.0.**
 
-## Installation
+## Getting Started
 
 ```
 npm install
-npm install -g jspm
-jspm install
+npm build
 ```
 
-## Building / Running
+To start a local hot-server  
 
-To build (switch slash direction if running on Windows):
-
-`./node_modules/.bin/gulp build`
-
-To run locally:
-
-`./node_modules/.bin/gulp serve`
+```
+npm start
+```
