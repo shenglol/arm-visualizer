@@ -1,7 +1,3 @@
-## Special Notice
-
-**This is a yet unreleased version of ArmViz 2.0.**
-
 ## Getting Started
 
 ```
@@ -14,3 +10,7 @@ To start a local hot-server
 ```
 npm start
 ```
+
+## License
+
+Available [here](https://github.com/msshli/arm-visualizer/blob/master/LICENSE.md)
