@@ -2,7 +2,7 @@
 
 ```
 npm install
-npm build
+npm run-script build
 ```
 
 To start a local hot-server  
