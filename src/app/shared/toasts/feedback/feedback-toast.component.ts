@@ -15,6 +15,6 @@ export class FeedbackToastComponent {
 
   onTakeSurveyButtonClick() {
     localStorage.setItem('feedback', 'took');
-    window.open('http://www.instant.ly/s/DDMwi');
+    window.open('https://aka.ms/ARMVizSurvey');
   }
 }
